@@ -1,5 +1,6 @@
 import OpenAI from 'openai';
 
+
 // Initialize OpenAI client with OpenRouter configuration
 const openai = new OpenAI({
   baseURL: 'https://openrouter.ai/api/v1',
