@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -15,8 +16,8 @@ import {
   User,
   Settings,
   Clock,
-  ChevronLeft,
-  ChevronRight
+  Menu,
+  X
 } from "lucide-react";
 
 const Dashboard = () => {
@@ -28,7 +29,7 @@ const Dashboard = () => {
     { id: "discover", name: "Discover", icon: <Globe className="w-5 h-5" /> },
     { id: "history", name: "History", icon: <History className="w-5 h-5" /> },
     { id: "profile", name: "Profile", icon: <User className="w-5 h-5" /> },
-    { id: "more", name: "More", icon: <Settings className="w-5 h-5" /> },
+    { id: "settings", name: "Settings", icon: <Settings className="w-5 h-5" /> },
   ];
 
   const quickActions = [
@@ -76,7 +77,7 @@ const Dashboard = () => {
             onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
             className="p-2"
           >
-            {sidebarCollapsed ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
+            {sidebarCollapsed ? <Menu className="w-4 h-4" /> : <X className="w-4 h-4" />}
           </Button>
         </div>
 
@@ -112,14 +113,14 @@ const Dashboard = () => {
               </h1>
               
               {/* Centered Search Box */}
-              <div className="max-w-3xl mx-auto mb-8">
-                <div className="relative bg-white rounded-xl border border-gray-200">
-                  <div className="flex items-center px-6 py-5">
-                    <Search className="w-6 h-6 text-gray-400 mr-4 flex-shrink-0" />
+              <div className="max-w-2xl mx-auto mb-8">
+                <div className="relative bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                  <div className="flex items-center px-4 py-4">
+                    <Search className="w-5 h-5 text-gray-400 mr-3 flex-shrink-0" />
                     <input
                       type="text"
                       placeholder="Ask anything..."
-                      className="flex-1 text-lg bg-transparent border-none outline-none placeholder-gray-400 text-gray-900"
+                      className="flex-1 text-base bg-transparent border-none outline-none placeholder-gray-400 text-gray-900"
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                     />
@@ -129,14 +130,14 @@ const Dashboard = () => {
                         size="sm" 
                         className="text-gray-400 hover:text-gray-600 p-2 h-auto"
                       >
-                        <Paperclip className="w-5 h-5" />
+                        <Paperclip className="w-4 h-4" />
                       </Button>
                       <Button 
                         variant="ghost" 
                         size="sm" 
                         className="text-gray-400 hover:text-gray-600 p-2 h-auto"
                       >
-                        <Mic className="w-5 h-5" />
+                        <Mic className="w-4 h-4" />
                       </Button>
                     </div>
                   </div>
