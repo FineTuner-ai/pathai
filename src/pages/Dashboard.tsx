@@ -13,23 +13,20 @@ import {
   Mic,
   Camera,
   Clock,
-  ChevronLeft,
-  ChevronRight,
   Settings,
   ArrowRight
 } from "lucide-react";
 
 const Dashboard = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [activeTab, setActiveTab] = useState("home");
 
   const navItems = [
-    { id: "home", name: "Home", icon: <Plus className="w-5 h-5" /> },
-    { id: "discover", name: "Discover", icon: <Clock className="w-5 h-5" /> },
-    { id: "library", name: "Library", icon: <Upload className="w-5 h-5" /> },
-    { id: "profile", name: "Profile", icon: <Search className="w-5 h-5" /> },
-    { id: "help", name: "Help", icon: <Settings className="w-5 h-5" /> },
+    { id: "home", name: "Home", icon: <Plus className="w-6 h-6" /> },
+    { id: "discover", name: "Discover", icon: <Clock className="w-6 h-6" /> },
+    { id: "library", name: "Library", icon: <Upload className="w-6 h-6" /> },
+    { id: "profile", name: "Profile", icon: <Search className="w-6 h-6" /> },
+    { id: "help", name: "Help", icon: <Settings className="w-6 h-6" /> },
   ];
 
   const renderContent = () => {
@@ -75,7 +72,7 @@ const Dashboard = () => {
                       <Button 
                         variant="ghost" 
                         size="sm" 
-                        className="text-teal-600 hover:text-teal-700 hover:bg-teal-50 p-2 h-auto rounded-lg"
+                        className="text-teal-600 hover:text-teal-700 hover:bg-teal-50 p-2 h-auto rounded-full"
                       >
                         <ArrowRight className="w-5 h-5" />
                       </Button>
@@ -226,7 +223,7 @@ const Dashboard = () => {
           <div className="text-center py-20">
             <Settings className="w-16 h-16 text-teal-600 mx-auto mb-4" />
             <h2 className="text-2xl font-bold text-gray-900 mb-2">Help & Support</h2>
-            <p className="text-gray-600">Get assistance and learn how to use agentics</p>
+            <p className="text-gray-600">Get assistance and learn how to use the platform</p>
           </div>
         );
       default:
@@ -236,64 +233,42 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 flex">
-      {/* Left Sidebar */}
-      <div className={`${sidebarCollapsed ? 'w-16' : 'w-64'} bg-white border-r border-gray-100 hidden md:flex flex-col transition-all duration-300`}>
-        {/* Logo and Toggle */}
-        <div className="p-4 border-b border-gray-50 flex items-center justify-between">
-          {!sidebarCollapsed && (
-            <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-gradient-to-br from-teal-500 to-teal-600 rounded-lg flex items-center justify-center">
-                <Brain className="w-5 h-5 text-white" />
-              </div>
-            </div>
-          )}
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-            className="p-2 hover:bg-gray-100"
-          >
-            {sidebarCollapsed ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
-          </Button>
+      {/* Left Sidebar - Fixed width */}
+      <div className="w-20 bg-white border-r border-gray-100 hidden md:flex flex-col">
+        {/* Logo */}
+        <div className="p-4 border-b border-gray-50 flex items-center justify-center">
+          <div className="w-8 h-8 bg-gradient-to-br from-teal-500 to-teal-600 rounded-lg flex items-center justify-center">
+            <Brain className="w-5 h-5 text-white" />
+          </div>
         </div>
 
         {/* Navigation */}
         <nav className="flex-1 p-4">
-          <div className="space-y-2">
+          <div className="space-y-6">
             {navItems.map((item) => (
-              <Button
+              <div
                 key={item.id}
-                variant={activeTab === item.id ? "default" : "ghost"}
-                className={`w-full ${sidebarCollapsed ? 'justify-center px-3' : 'justify-start'} h-12 ${
-                  activeTab === item.id 
-                    ? 'bg-teal-600 text-white hover:bg-teal-700' 
-                    : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'
-                }`}
-                title={sidebarCollapsed ? item.name : undefined}
+                className="flex flex-col items-center cursor-pointer group"
                 onClick={() => setActiveTab(item.id)}
               >
-                {item.icon}
-                {!sidebarCollapsed && (
-                  <span className="ml-3 text-sm font-medium">{item.name}</span>
-                )}
-              </Button>
+                <div className={`p-3 rounded-full transition-all duration-200 ${
+                  activeTab === item.id 
+                    ? 'bg-teal-600 text-white' 
+                    : 'text-gray-500 hover:bg-teal-100 hover:text-teal-600'
+                }`}>
+                  {item.icon}
+                </div>
+                <span className={`text-xs mt-2 font-medium transition-colors ${
+                  activeTab === item.id 
+                    ? 'text-teal-600' 
+                    : 'text-gray-500 group-hover:text-teal-600'
+                }`}>
+                  {item.name}
+                </span>
+              </div>
             ))}
           </div>
         </nav>
-
-        {/* Settings at bottom */}
-        <div className="p-4 border-t border-gray-50">
-          <Button
-            variant="ghost"
-            className={`w-full ${sidebarCollapsed ? 'justify-center px-3' : 'justify-start'} text-gray-600 hover:text-gray-900 hover:bg-gray-100 h-12`}
-            title={sidebarCollapsed ? "Settings" : undefined}
-          >
-            <Settings className="w-5 h-5" />
-            {!sidebarCollapsed && (
-              <span className="ml-3 text-sm font-medium">Settings</span>
-            )}
-          </Button>
-        </div>
       </div>
 
       {/* Main Content */}
