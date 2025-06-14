@@ -11,6 +11,9 @@ import Discovery from "./pages/Discovery";
 import Profile from "./pages/Profile";
 import More from "./pages/More";
 import Community from "./pages/Community";
+import Calendar from "./pages/Calendar";
+import Notifications from "./pages/Notifications";
+import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -29,6 +32,9 @@ const App = () => (
           <Route path="/profile" element={<Profile />} />
           <Route path="/more" element={<More />} />
           <Route path="/community" element={<Community />} />
+          <Route path="/calendar" element={<Calendar />} />
+          <Route path="/notifications" element={<Notifications />} />
+          <Route path="/settings" element={<Settings />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
