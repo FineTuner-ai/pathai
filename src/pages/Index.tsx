@@ -1,6 +1,6 @@
+
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { 
   ArrowRight, 
   Play, 
@@ -25,53 +25,52 @@ import {
   FileText,
   Target,
   Database,
-  Bot
+  Bot,
+  CheckCircle,
+  TrendingUp,
+  UserPlus,
+  BarChart3
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import HeroSection from "@/components/HeroSection";
 
 const Index = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Ultra Modern Navigation */}
-      <header className="border-b bg-white/95 backdrop-blur-xl sticky top-0 z-50 shadow-sm">
+      {/* Header */}
+      <header className="border-b bg-white sticky top-0 z-50 shadow-sm">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-8">
               <div className="flex items-center space-x-3">
-                <div className="w-11 h-11 bg-gradient-to-br from-blue-600 via-purple-600 to-blue-700 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-500/25 ring-1 ring-blue-500/20">
-                  <Bot className="w-6 h-6 text-white" />
+                <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center">
+                  <span className="text-white font-bold text-sm">G</span>
                 </div>
-                <span className="text-2xl font-bold bg-gradient-to-r from-blue-900 via-purple-700 to-blue-800 bg-clip-text text-transparent tracking-tight">Agentics AI</span>
+                <span className="text-xl font-bold text-gray-900">Grevice</span>
               </div>
               <nav className="hidden md:flex items-center space-x-8">
-                <Link to="#" className="text-gray-600 hover:text-blue-600 transition-all duration-200 font-medium relative group">
-                  Home
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                <Link to="#" className="text-gray-600 hover:text-gray-900 transition-colors font-medium">
+                  Overview
                 </Link>
-                <Link to="#" className="text-gray-600 hover:text-blue-600 transition-all duration-200 font-medium relative group">
-                  Workflow
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                <Link to="#" className="text-gray-600 hover:text-gray-900 transition-colors font-medium">
+                  Resources
                 </Link>
-                <Link to="#" className="text-gray-600 hover:text-blue-600 transition-all duration-200 font-medium relative group">
-                  About
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                <Link to="#" className="text-gray-600 hover:text-gray-900 transition-colors font-medium">
+                  Networking
                 </Link>
-                <Link to="#" className="text-gray-600 hover:text-blue-600 transition-all duration-200 font-medium relative group">
-                  Contact
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                <Link to="#" className="text-gray-600 hover:text-gray-900 transition-colors font-medium">
+                  Pricing
                 </Link>
               </nav>
             </div>
             <div className="hidden md:flex items-center space-x-4">
-              <Button variant="ghost" className="text-gray-600 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200">
+              <Button variant="ghost" className="text-gray-600 hover:text-gray-900">
                 Log in
               </Button>
-              <Button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700 shadow-lg shadow-blue-500/25 transition-all duration-200 hover:shadow-xl hover:shadow-blue-500/30 border-0 px-6 py-2 rounded-xl">
-                Join us on Discord
+              <Button className="bg-black text-white hover:bg-gray-800">
+                Get started
               </Button>
             </div>
             <Button
@@ -86,79 +85,66 @@ const Index = () => {
       </header>
 
       {/* Hero Section */}
-      <HeroSection />
-
-      {/* Workflow Features Section */}
-      <section className="py-32 bg-white">
+      <section className="py-20 bg-white relative overflow-hidden">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-20">
-            <h2 className="text-6xl font-bold mb-8 bg-gradient-to-r from-blue-900 to-purple-800 bg-clip-text text-transparent leading-tight">
-              9-Agent Intelligent<br />System Workflow
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              From onboarding to application submission - our specialized AI agents handle every step of your graduate school journey with precision and personalization.
-            </p>
-          </div>
-
-          <div className="grid lg:grid-cols-2 gap-20 max-w-7xl mx-auto items-center">
-            <div className="space-y-8">
-              <div className="bg-gradient-to-br from-blue-600 to-purple-600 p-12 rounded-3xl text-white shadow-2xl shadow-blue-500/20 relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
-                <div className="relative">
-                  <Brain className="w-16 h-16 mb-8" />
-                  <h3 className="text-3xl font-bold mb-6">Intelligent Discovery System</h3>
-                  <p className="text-blue-100 text-lg leading-relaxed">
-                    Our University Discovery Agent performs semantic search across global databases, while Professor Matching Agent analyzes research alignment for perfect academic fits.
-                  </p>
-                </div>
-              </div>
-              
-              <div className="grid grid-cols-2 gap-6">
-                {[
-                  { icon: Search, title: "University Discovery", desc: "Semantic search across global academic databases" },
-                  { icon: Users, title: "Professor Matching", desc: "NLP filters to extract and rank professors whose research overlaps your interests" },
-                  { icon: Award, title: "Scholarship Finding", desc: "Searches university funding pages and external scholarship databases" },
-                  { icon: Mail, title: "Cold Email Generation", desc: "CV-powered personalized professor outreach based on research alignment" }
-                ].map((feature, index) => (
-                  <div key={index} className="bg-white border border-gray-100 p-8 rounded-2xl hover:shadow-xl hover:shadow-blue-500/10 transition-all duration-300 group">
-                    <feature.icon className="w-10 h-10 text-blue-600 mb-4 group-hover:scale-110 transition-transform" />
-                    <h4 className="font-bold text-gray-800 mb-2">{feature.title}</h4>
-                    <p className="text-gray-600 text-sm">{feature.desc}</p>
-                  </div>
-                ))}
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="text-left">
+              <h1 className="text-6xl font-bold text-gray-900 mb-8 leading-tight">
+                Give your<br />
+                customers a voice<br />
+                with <span className="text-black">Community</span>
+              </h1>
+              <p className="text-xl text-gray-600 mb-8 leading-relaxed max-w-lg">
+                Connect real voices and ideas to achieve thriving community experiences. Build trust, drive growth.
+              </p>
+              <div className="flex items-center space-x-4">
+                <Button className="bg-emerald-500 text-white hover:bg-emerald-600 px-8 py-4 text-lg rounded-lg">
+                  Start building for free
+                </Button>
+                <Button variant="ghost" className="text-gray-600 hover:text-gray-900 px-6 py-4 text-lg">
+                  <Play className="w-5 h-5 mr-2" />
+                  Watch demo
+                </Button>
               </div>
             </div>
             
-            <div className="bg-gradient-to-br from-gray-900 to-blue-900 rounded-3xl p-12 text-white relative overflow-hidden shadow-2xl">
-              <div className="absolute top-0 right-0 w-40 h-40 bg-blue-500/20 rounded-full blur-3xl"></div>
-              <div className="absolute bottom-0 left-0 w-32 h-32 bg-purple-500/20 rounded-full blur-2xl"></div>
-              
-              <div className="relative z-10">
-                <div className="mb-10">
-                  <div className="w-20 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl mb-8 flex items-center justify-center">
-                    <Database className="w-10 h-10 text-white" />
-                  </div>
-                  <h4 className="text-3xl font-bold mb-4">AI Agent Pipeline</h4>
-                  <p className="text-blue-100">Real-time workflow tracking across all 9 intelligent agents</p>
-                </div>
+            {/* Right side with community avatars */}
+            <div className="relative">
+              <div className="bg-gray-100 rounded-3xl p-8 h-96 flex items-center justify-center relative overflow-hidden">
+                <img 
+                  src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                  alt="Community member" 
+                  className="w-64 h-64 object-cover rounded-2xl"
+                />
                 
-                <div className="space-y-6">
-                  {[
-                    { stage: "Onboarding Complete", progress: "100%", color: "from-green-500 to-emerald-500" },
-                    { stage: "University Discovery", progress: "87%", color: "from-blue-500 to-cyan-500" },
-                    { stage: "Professor Matching", progress: "62%", color: "from-purple-500 to-pink-500" },
-                    { stage: "SOP Enhancement", progress: "34%", color: "from-orange-500 to-red-500" }
-                  ].map((item, index) => (
-                    <div key={index} className="bg-white/10 backdrop-blur-sm p-6 rounded-2xl border border-white/20">
-                      <div className="flex items-center justify-between mb-3">
-                        <span className="font-medium">{item.stage}</span>
-                        <span className="text-sm text-blue-200">{item.progress}</span>
-                      </div>
-                      <div className="w-full bg-white/20 rounded-full h-2">
-                        <div className={`bg-gradient-to-r ${item.color} h-2 rounded-full transition-all duration-500`} style={{width: item.progress}}></div>
-                      </div>
-                    </div>
-                  ))}
+                {/* Floating avatars */}
+                <div className="absolute top-4 left-4 w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg">
+                  <img 
+                    src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                    alt="User" 
+                    className="w-10 h-10 rounded-full object-cover"
+                  />
+                </div>
+                <div className="absolute top-8 right-8 w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg">
+                  <img 
+                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                    alt="User" 
+                    className="w-10 h-10 rounded-full object-cover"
+                  />
+                </div>
+                <div className="absolute bottom-8 left-8 w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg">
+                  <img 
+                    src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                    alt="User" 
+                    className="w-10 h-10 rounded-full object-cover"
+                  />
+                </div>
+                <div className="absolute bottom-4 right-4 w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg">
+                  <img 
+                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
+                    alt="User" 
+                    className="w-10 h-10 rounded-full object-cover"
+                  />
                 </div>
               </div>
             </div>
@@ -166,201 +152,220 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Modern Cards Section */}
-      <section className="py-32 bg-gradient-to-br from-gray-50 to-blue-50/30">
+      {/* Community Building Section */}
+      <section className="py-24 bg-gray-50">
         <div className="container mx-auto px-6">
-          <div className="text-center mb-20">
-            <h2 className="text-6xl font-bold mb-8 bg-gradient-to-r from-blue-900 to-purple-800 bg-clip-text text-transparent leading-tight">
-              Complete Application<br />Toolkit
+          <div className="text-center mb-16">
+            <h2 className="text-5xl font-bold text-gray-900 mb-6">
+              Everything you need for build an<br />
+              engaging community.
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              9 specialized AI agents working together to deliver your complete graduate school application toolkit.
-            </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-            {/* Main Feature Card */}
-            <Card className="bg-gradient-to-br from-blue-600 to-purple-600 text-white p-10 lg:col-span-2 border-0 shadow-2xl shadow-blue-500/20 relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-2xl"></div>
-              <CardContent className="p-0 relative z-10">
-                <Target className="w-16 h-16 mb-8" />
-                <h3 className="font-bold text-2xl mb-4">Professor Insight Agent</h3>
-                <p className="text-blue-100 leading-relaxed text-lg mb-6">
-                  Extracts in-depth professor information from faculty websites, Google Scholar, ResearchGate, and Semantic Scholar using advanced summarization models.
-                </p>
-                <Button className="bg-white text-blue-600 hover:bg-blue-50 transition-all duration-200">
-                  Explore Insights
-                  <ArrowRight className="w-4 h-4 ml-2" />
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div className="bg-gradient-to-br from-emerald-400 to-teal-500 rounded-3xl p-12 text-white relative overflow-hidden">
+              <div className="relative z-10">
+                <h3 className="text-3xl font-bold mb-6">Build community and manage</h3>
+                <div className="space-y-4">
+                  <div className="flex items-center space-x-3">
+                    <CheckCircle className="w-6 h-6" />
+                    <span className="text-lg">Seamless</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <CheckCircle className="w-6 h-6" />
+                    <span className="text-lg">Fully responsive and mobile optimized</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <CheckCircle className="w-6 h-6" />
+                    <span className="text-lg">Amazing customization</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <CheckCircle className="w-6 h-6" />
+                    <span className="text-lg">Outstanding customer support</span>
+                  </div>
+                </div>
+                <Button className="bg-white text-emerald-600 hover:bg-gray-100 mt-8 px-8 py-3">
+                  Learn more
                 </Button>
-              </CardContent>
-            </Card>
+              </div>
+            </div>
 
-            {/* Feature Cards */}
-            {[
-              {
-                icon: GraduationCap,
-                title: "University Discovery Agent",
-                desc: "Semantic search across global university databases and academic directories",
-                image: "https://images.unsplash.com/photo-1607237138185-eedd9c632b0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-                gradient: "from-blue-500 to-cyan-500"
-              },
-              {
-                icon: Users,
-                title: "Professor Matching Agent",
-                desc: "NLP filters to extract and rank professors whose research overlaps your interests",
-                image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-                gradient: "from-purple-500 to-pink-500"
-              },
-              {
-                icon: Award,
-                title: "Scholarship Discovery Agent",
-                desc: "Searches university funding pages and external scholarship databases",
-                image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-                gradient: "from-emerald-500 to-teal-500"
-              },
-              {
-                icon: Mail,
-                title: "Cold Email Generator Agent",
-                desc: "CV-powered personalized professor outreach based on research alignment",
-                image: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-                gradient: "from-orange-500 to-red-500"
-              },
-              {
-                icon: FileText,
-                title: "SOP Enhancer Agent",
-                desc: "AI-powered statement of purpose optimization and university-specific tailoring",
-                image: "https://images.unsplash.com/photo-1456324504439-367cee3b3c32?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80",
-                gradient: "from-indigo-500 to-purple-500"
-              }
-            ].map((card, index) => (
-              <Card key={index} className="bg-white border-0 shadow-xl shadow-gray-200/50 hover:shadow-2xl hover:shadow-gray-300/50 transition-all duration-300 group overflow-hidden">
-                <CardContent className="p-0">
-                  <div className="relative h-48 overflow-hidden">
-                    <img 
-                      src={card.image} 
-                      alt={card.title} 
-                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                    <div className={`absolute inset-0 bg-gradient-to-br ${card.gradient} opacity-80`}></div>
-                    <div className="absolute bottom-4 left-4">
-                      <card.icon className="w-8 h-8 text-white" />
-                    </div>
+            <div className="bg-white rounded-3xl p-8 shadow-xl">
+              <div className="bg-gray-900 rounded-2xl p-8 text-white relative">
+                <div className="mb-6">
+                  <div className="flex items-center space-x-2 mb-4">
+                    <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                    <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
                   </div>
-                  <div className="p-8">
-                    <h3 className="font-bold text-xl text-gray-800 mb-3">{card.title}</h3>
-                    <p className="text-gray-600 leading-relaxed">{card.desc}</p>
+                  <h4 className="text-xl font-bold">One and Done</h4>
+                </div>
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between p-3 bg-gray-800 rounded-lg">
+                    <span>Members</span>
+                    <TrendingUp className="w-5 h-5 text-emerald-400" />
                   </div>
-                </CardContent>
-              </Card>
-            ))}
+                  <div className="flex items-center justify-between p-3 bg-gray-800 rounded-lg">
+                    <span>Posts</span>
+                    <BarChart3 className="w-5 h-5 text-blue-400" />
+                  </div>
+                  <div className="flex items-center justify-between p-3 bg-gray-800 rounded-lg">
+                    <span>Engagement</span>
+                    <Heart className="w-5 h-5 text-red-400" />
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Community Section */}
+      {/* Support Section */}
       <section className="py-24 bg-white">
-        <div className="container mx-auto px-6 text-center">
-          <div className="max-w-3xl mx-auto mb-20">
-            <h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
-              Academic Network,<br />without Limits.
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-5xl font-bold text-gray-900 mb-6">
+              Support clients of all<br />
+              shapes and sizes.
             </h2>
-            <p className="text-xl text-gray-600 leading-relaxed">Connect with universities, professors, and opportunities across all academic platforms and databases.</p>
           </div>
 
-          {/* Academic Platform Icons */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <Card className="bg-emerald-500 text-white border-0 overflow-hidden">
+              <CardContent className="p-8">
+                <Users className="w-12 h-12 mb-6" />
+                <h3 className="text-2xl font-bold mb-4">Teams & Startups</h3>
+                <p className="text-emerald-100">Build and scale your community from day one with powerful tools.</p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-blue-500 text-white border-0 overflow-hidden">
+              <CardContent className="p-8">
+                <Building2 className="w-12 h-12 mb-6" />
+                <h3 className="text-2xl font-bold mb-4">Small businesses</h3>
+                <p className="text-blue-100">Engage your customers and build lasting relationships.</p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-purple-500 text-white border-0 overflow-hidden">
+              <CardContent className="p-8">
+                <Globe className="w-12 h-12 mb-6" />
+                <h3 className="text-2xl font-bold mb-4">Global enterprises</h3>
+                <p className="text-purple-100">Scale your community across regions and teams.</p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-orange-500 text-white border-0 overflow-hidden">
+              <CardContent className="p-8">
+                <GraduationCap className="w-12 h-12 mb-6" />
+                <h3 className="text-2xl font-bold mb-4">Leading universities</h3>
+                <p className="text-orange-100">Connect students, faculty, and alumni in meaningful ways.</p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-pink-500 text-white border-0 overflow-hidden">
+              <CardContent className="p-8">
+                <Heart className="w-12 h-12 mb-6" />
+                <h3 className="text-2xl font-bold mb-4">Non-profits</h3>
+                <p className="text-pink-100">Mobilize supporters and volunteers for your cause.</p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-indigo-500 text-white border-0 overflow-hidden">
+              <CardContent className="p-8">
+                <Zap className="w-12 h-12 mb-6" />
+                <h3 className="text-2xl font-bold mb-4">Gov & Enterprise</h3>
+                <p className="text-indigo-100">Secure, scalable solutions for large organizations.</p>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* Community Icons Section */}
+      <section className="py-24 bg-gray-50">
+        <div className="container mx-auto px-6 text-center">
+          <h2 className="text-5xl font-bold text-gray-900 mb-6">
+            Community,<br />
+            without Limits.
+          </h2>
+          <p className="text-xl text-gray-600 mb-16">
+            Connect and engage with your audience across all platforms and touchpoints.
+          </p>
+
+          {/* Social Platform Icons */}
           <div className="relative max-w-lg mx-auto h-80 mb-16">
-            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-16 h-16 bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl flex items-center justify-center shadow-xl">
-              <GraduationCap className="w-8 h-8 text-white" />
+            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-16 h-16 bg-blue-500 rounded-2xl flex items-center justify-center shadow-xl">
+              <MessageCircle className="w-8 h-8 text-white" />
             </div>
-            <div className="absolute top-12 right-12 w-16 h-16 bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-2xl flex items-center justify-center shadow-xl">
-              <BookOpen className="w-8 h-8 text-white" />
-            </div>
-            <div className="absolute top-20 left-8 w-16 h-16 bg-gradient-to-r from-orange-500 to-orange-600 rounded-2xl flex items-center justify-center shadow-xl">
+            <div className="absolute top-12 right-12 w-16 h-16 bg-emerald-500 rounded-2xl flex items-center justify-center shadow-xl">
               <Users className="w-8 h-8 text-white" />
             </div>
-            <div className="absolute bottom-20 right-8 w-16 h-16 bg-gradient-to-r from-red-500 to-red-600 rounded-2xl flex items-center justify-center shadow-xl">
-              <Search className="w-8 h-8 text-white" />
+            <div className="absolute top-20 left-8 w-16 h-16 bg-orange-500 rounded-2xl flex items-center justify-center shadow-xl">
+              <Heart className="w-8 h-8 text-white" />
             </div>
-            <div className="absolute bottom-12 left-12 w-16 h-16 bg-gradient-to-r from-pink-500 to-pink-600 rounded-2xl flex items-center justify-center shadow-xl">
-              <Award className="w-8 h-8 text-white" />
+            <div className="absolute bottom-20 right-8 w-16 h-16 bg-red-500 rounded-2xl flex items-center justify-center shadow-xl">
+              <Star className="w-8 h-8 text-white" />
             </div>
-            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 h-16 bg-gradient-to-r from-purple-600 to-purple-700 rounded-2xl flex items-center justify-center shadow-xl">
-              <FileText className="w-8 h-8 text-white" />
+            <div className="absolute bottom-12 left-12 w-16 h-16 bg-pink-500 rounded-2xl flex items-center justify-center shadow-xl">
+              <UserPlus className="w-8 h-8 text-white" />
             </div>
-            <div className="absolute top-1/2 right-0 transform -translate-y-1/2 w-16 h-16 bg-gradient-to-r from-blue-400 to-blue-500 rounded-2xl flex items-center justify-center shadow-xl">
-              <Mail className="w-8 h-8 text-white" />
+            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 h-16 bg-purple-600 rounded-2xl flex items-center justify-center shadow-xl">
+              <Globe className="w-8 h-8 text-white" />
             </div>
-            <div className="absolute top-1/2 left-0 transform -translate-y-1/2 w-16 h-16 bg-gradient-to-r from-indigo-600 to-indigo-700 rounded-2xl flex items-center justify-center shadow-xl">
-              <Database className="w-8 h-8 text-white" />
+            <div className="absolute top-1/2 right-0 transform -translate-y-1/2 w-16 h-16 bg-blue-400 rounded-2xl flex items-center justify-center shadow-xl">
+              <Shield className="w-8 h-8 text-white" />
+            </div>
+            <div className="absolute top-1/2 left-0 transform -translate-y-1/2 w-16 h-16 bg-indigo-600 rounded-2xl flex items-center justify-center shadow-xl">
+              <Zap className="w-8 h-8 text-white" />
             </div>
           </div>
 
-          <Button className="bg-gradient-to-r from-blue-600 to-purple-600 text-white hover:from-blue-700 hover:to-purple-700 px-10 py-4 text-lg shadow-xl">
-            Start Discovery
-            <ArrowRight className="w-5 h-5 ml-2" />
+          <Button className="bg-emerald-500 text-white hover:bg-emerald-600 px-10 py-4 text-lg">
+            Start building
           </Button>
         </div>
       </section>
 
       {/* Cross Platform Section */}
-      <section className="py-24 bg-gray-50">
+      <section className="py-24 bg-white">
         <div className="container mx-auto px-6 text-center">
-          <h2 className="text-5xl font-bold mb-6 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
-            Web. Mobile. Desktop.<br />Seamless Experience.
+          <h2 className="text-5xl font-bold text-gray-900 mb-6">
+            iOS. Android. Web.<br />
+            It just works.
           </h2>
-          <p className="text-xl text-gray-600 mb-16">Access your application toolkit anywhere</p>
+          <p className="text-xl text-gray-600 mb-16">
+            Your community experience across every device and platform.
+          </p>
 
           <div className="flex justify-center space-x-6 mb-16">
-            <Button variant="outline" className="bg-gray-900 text-white border-gray-900 hover:bg-gray-800 px-8 py-4 text-lg">
+            <Button variant="outline" className="bg-black text-white border-black hover:bg-gray-800 px-8 py-4 text-lg">
               <Monitor className="w-5 h-5 mr-3" />
-              Web App
+              App Store
             </Button>
-            <Button variant="outline" className="bg-gray-900 text-white border-gray-900 hover:bg-gray-800 px-8 py-4 text-lg">
+            <Button variant="outline" className="bg-black text-white border-black hover:bg-gray-800 px-8 py-4 text-lg">
               <Smartphone className="w-5 h-5 mr-3" />
-              Mobile App
+              Google Play
             </Button>
           </div>
 
           {/* Device Mockups */}
-          <div className="relative max-w-5xl mx-auto">
-            <div className="grid md:grid-cols-2 gap-12 items-center">
-              <div className="bg-white rounded-3xl shadow-2xl p-10 border border-gray-100">
-                <div className="bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl h-80 flex items-center justify-center">
-                  <Monitor className="w-20 h-20 text-gray-400" />
+          <div className="relative max-w-6xl mx-auto">
+            <div className="grid md:grid-cols-3 gap-8 items-end">
+              <div className="bg-white rounded-3xl shadow-2xl p-8">
+                <div className="bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl h-64 flex items-center justify-center">
+                  <Monitor className="w-16 h-16 text-gray-400" />
                 </div>
               </div>
-              <div className="bg-white rounded-3xl shadow-2xl p-6 max-w-sm mx-auto">
-                <div className="bg-gradient-to-br from-gray-100 to-gray-200 rounded-3xl h-96 flex items-center justify-center">
-                  <Smartphone className="w-16 h-16 text-gray-400" />
+              <div className="bg-white rounded-3xl shadow-2xl p-6">
+                <div className="bg-gradient-to-br from-gray-100 to-gray-200 rounded-3xl h-80 flex items-center justify-center">
+                  <Smartphone className="w-12 h-12 text-gray-400" />
                 </div>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonial Section */}
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-6">
-          <div className="max-w-5xl mx-auto text-center">
-            <Quote className="w-16 h-16 text-blue-500 mx-auto mb-8" />
-            <blockquote className="text-3xl font-medium text-gray-900 mb-12 leading-relaxed">
-              "Agentics AI transformed my graduate school application process. The 9 AI agents found perfect university matches, connected me with relevant professors, and even helped craft personalized emails. I secured admission with full funding!"
-            </blockquote>
-            <div className="flex items-center justify-center space-x-6">
-              <img 
-                src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
-                alt="Success story" 
-                className="w-16 h-16 rounded-full border-4 border-blue-100"
-              />
-              <div className="text-left">
-                <p className="font-bold text-lg">Sarah Chen</p>
-                <p className="text-gray-500">PhD Student, MIT</p>
-              </div>
-            </div>
-            <div className="flex justify-center mt-8">
-              <div className="h-12 px-6 bg-gray-100 rounded-full flex items-center">
-                <span className="text-gray-600 font-medium">MIT</span>
+              <div className="bg-white rounded-3xl shadow-2xl p-8">
+                <div className="bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl h-64 flex items-center justify-center">
+                  <Globe className="w-16 h-16 text-gray-400" />
+                </div>
               </div>
             </div>
           </div>
@@ -368,16 +373,17 @@ const Index = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-br from-blue-600 to-purple-600">
+      <section className="py-24 bg-emerald-500">
         <div className="container mx-auto px-6 text-center">
           <div className="max-w-3xl mx-auto text-white">
-            <h2 className="text-5xl font-bold mb-8 leading-tight">Ready to transform your<br />graduate school journey?</h2>
-            <div className="flex justify-center">
-              <Button className="bg-white text-blue-600 hover:bg-gray-100 px-10 py-4 text-lg shadow-xl">
-                Start Free Trial
-                <ArrowRight className="w-5 h-5 ml-2" />
-              </Button>
-            </div>
+            <h2 className="text-5xl font-bold mb-8 leading-tight">
+              Ready to create your<br />
+              community experience?
+            </h2>
+            <Button className="bg-white text-emerald-600 hover:bg-gray-100 px-10 py-4 text-lg">
+              Get started now
+              <ArrowRight className="w-5 h-5 ml-2" />
+            </Button>
           </div>
         </div>
       </section>
@@ -388,22 +394,22 @@ const Index = () => {
           <div className="grid md:grid-cols-4 gap-12">
             <div>
               <div className="flex items-center space-x-3 mb-6">
-                <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center">
-                  <Bot className="w-6 h-6 text-white" />
+                <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center">
+                  <span className="text-gray-900 font-bold text-sm">G</span>
                 </div>
-                <span className="text-2xl font-bold">Agentics AI</span>
+                <span className="text-xl font-bold">Grevice</span>
               </div>
               <p className="text-gray-400 leading-relaxed">
-                Intelligent systems for academic success.
+                Building communities that connect and engage.
               </p>
             </div>
             <div>
               <h4 className="font-bold mb-6 text-lg">Solutions</h4>
               <ul className="space-y-3 text-gray-400">
-                <li><Link to="#" className="hover:text-white transition-colors">University Discovery</Link></li>
-                <li><Link to="#" className="hover:text-white transition-colors">Professor Matching</Link></li>
-                <li><Link to="#" className="hover:text-white transition-colors">Scholarship Finding</Link></li>
-                <li><Link to="#" className="hover:text-white transition-colors">Application Tools</Link></li>
+                <li><Link to="#" className="hover:text-white transition-colors">Community Building</Link></li>
+                <li><Link to="#" className="hover:text-white transition-colors">Engagement Tools</Link></li>
+                <li><Link to="#" className="hover:text-white transition-colors">Analytics</Link></li>
+                <li><Link to="#" className="hover:text-white transition-colors">Integrations</Link></li>
               </ul>
             </div>
             <div>
@@ -426,12 +432,15 @@ const Index = () => {
             </div>
           </div>
           <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-            <p>&copy; 2024 Agentics AI. All rights reserved.</p>
+            <p>&copy; 2024 Grevice. All rights reserved.</p>
           </div>
         </div>
       </footer>
     </div>
   );
 };
+
+// Missing import
+import { Building2 } from "lucide-react";
 
 export default Index;
