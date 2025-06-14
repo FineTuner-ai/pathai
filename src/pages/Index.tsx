@@ -1,6 +1,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import  {Link} from "react-router-dom";
 import { 
   ArrowRight, 
   Play, 
@@ -40,7 +41,6 @@ import {
   Send,
   PenTool
 } from "lucide-react";
-import { Link } from "react-router-dom";
 import { useState } from "react";
 
 const Index = () => {
@@ -57,7 +57,7 @@ const Index = () => {
                 <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
                   <Brain className="w-6 h-6 text-white" />
                 </div>
-                <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Agentics AI</span>
+                <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Path</span>
               </div>
               <nav className="hidden md:flex items-center space-x-8">
                 <Link to="#" className="text-gray-600 hover:text-blue-600 transition-colors font-medium">
@@ -73,12 +73,7 @@ const Index = () => {
                   Contact
                 </Link>
               </nav>
-            </div>
-            <div className="hidden md:flex items-center space-x-4">
-              <Button variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-6 py-2 rounded-xl transition-all duration-300">
-                Community
-              </Button>
-            </div>
+           
             <Button
               variant="ghost"
               className="md:hidden p-2"
@@ -87,7 +82,16 @@ const Index = () => {
               {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </Button>
           </div>
+           <div className="hidden md:flex items-end space-x-4">
+            <Link to="/community">
+
+              <Button variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-6 py-2 rounded-xl transition-all duration-300">
+                Community
+              </Button>
+              </Link>
+            </div>
         </div>
+      </div>
       </header>
 
       {/* Hero Section */}
@@ -117,7 +121,7 @@ const Index = () => {
             
             <h1 className="text-5xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight animate-scale-in">
               <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-700 bg-clip-text text-transparent">
-                Agentics AI:
+                Path:
               </span>
               <br />
               <span className="text-gray-800">
@@ -325,7 +329,7 @@ const Index = () => {
                 <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center">
                   <Brain className="w-6 h-6 text-white" />
                 </div>
-                <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Agentics AI</span>
+                <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Path</span>
               </div>
               <p className="text-gray-600 leading-relaxed">
                 Intelligent academic discovery platform powered by AI agents for seamless university applications.
@@ -360,7 +364,7 @@ const Index = () => {
             </div>
           </div>
           <div className="border-t border-gray-200 mt-12 pt-8 text-center text-gray-600">
-            <p>&copy; 2024 Agentics AI. All rights reserved.</p>
+            <p>&copy; 2024 Path. All rights reserved.</p>
           </div>
         </div>
       </footer>
