@@ -29,7 +29,9 @@ import {
   CheckCircle,
   TrendingUp,
   UserPlus,
-  BarChart3
+  BarChart3,
+  Rocket,
+  Trophy
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
@@ -38,39 +40,36 @@ const Index = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="border-b bg-white sticky top-0 z-50 shadow-sm">
+      <header className="bg-white sticky top-0 z-50 shadow-sm border-b">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-8">
               <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 bg-black rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-sm">G</span>
+                <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                  <span className="text-white font-bold text-sm">M</span>
                 </div>
-                <span className="text-xl font-bold text-gray-900">Grevice</span>
+                <span className="text-xl font-bold text-gray-900">MarkitUp</span>
               </div>
               <nav className="hidden md:flex items-center space-x-8">
-                <Link to="#" className="text-gray-600 hover:text-gray-900 transition-colors font-medium">
-                  Overview
+                <Link to="#" className="text-gray-600 hover:text-blue-600 transition-colors font-medium">
+                  Home
                 </Link>
-                <Link to="#" className="text-gray-600 hover:text-gray-900 transition-colors font-medium">
-                  Resources
+                <Link to="#" className="text-gray-600 hover:text-blue-600 transition-colors font-medium">
+                  Services
                 </Link>
-                <Link to="#" className="text-gray-600 hover:text-gray-900 transition-colors font-medium">
-                  Networking
+                <Link to="#" className="text-gray-600 hover:text-blue-600 transition-colors font-medium">
+                  About
                 </Link>
-                <Link to="#" className="text-gray-600 hover:text-gray-900 transition-colors font-medium">
-                  Pricing
+                <Link to="#" className="text-gray-600 hover:text-blue-600 transition-colors font-medium">
+                  Contact
                 </Link>
               </nav>
             </div>
             <div className="hidden md:flex items-center space-x-4">
-              <Button variant="ghost" className="text-gray-600 hover:text-gray-900">
-                Log in
-              </Button>
-              <Button className="bg-black text-white hover:bg-gray-800">
-                Get started
+              <Button className="bg-blue-600 text-white hover:bg-blue-700 px-6 py-2 rounded-lg">
+                Join us on Discord
               </Button>
             </div>
             <Button
@@ -85,66 +84,72 @@ const Index = () => {
       </header>
 
       {/* Hero Section */}
-      <section className="py-20 bg-white relative overflow-hidden">
+      <section className="py-20 bg-gray-50 relative overflow-hidden">
+        {/* Decorative elements */}
+        <div className="absolute top-20 left-20 text-blue-300">
+          <div className="w-6 h-6 rotate-45 border-2 border-current"></div>
+        </div>
+        <div className="absolute top-32 right-32 text-blue-300">
+          <div className="w-4 h-4 rotate-45 border-2 border-current"></div>
+        </div>
+        <div className="absolute bottom-40 left-40 text-blue-300">
+          <div className="w-8 h-8 rotate-45 border-2 border-current"></div>
+        </div>
+        <div className="absolute bottom-32 right-20 text-blue-300">
+          <div className="w-6 h-6 rotate-45 border-2 border-current"></div>
+        </div>
+
         <div className="container mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="text-left">
-              <h1 className="text-6xl font-bold text-gray-900 mb-8 leading-tight">
-                Give your<br />
-                customers a voice<br />
-                with <span className="text-black">Community</span>
-              </h1>
-              <p className="text-xl text-gray-600 mb-8 leading-relaxed max-w-lg">
-                Connect real voices and ideas to achieve thriving community experiences. Build trust, drive growth.
-              </p>
-              <div className="flex items-center space-x-4">
-                <Button className="bg-emerald-500 text-white hover:bg-emerald-600 px-8 py-4 text-lg rounded-lg">
-                  Start building for free
-                </Button>
-                <Button variant="ghost" className="text-gray-600 hover:text-gray-900 px-6 py-4 text-lg">
-                  <Play className="w-5 h-5 mr-2" />
-                  Watch demo
-                </Button>
-              </div>
-            </div>
-            
-            {/* Right side with community avatars */}
-            <div className="relative">
-              <div className="bg-gray-100 rounded-3xl p-8 h-96 flex items-center justify-center relative overflow-hidden">
+          <div className="text-center mb-16">
+            <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+              Join India's First<br />
+              <span className="text-blue-600">Builders Community</span>
+            </h1>
+            <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
+              We help individuals to grow by unleashing the potential of social media 🚀
+            </p>
+
+            {/* Community Image with floating avatars */}
+            <div className="relative max-w-2xl mx-auto mb-16">
+              <div className="bg-white rounded-3xl p-8 shadow-xl relative overflow-hidden">
                 <img 
-                  src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                  alt="Community member" 
-                  className="w-64 h-64 object-cover rounded-2xl"
+                  src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+                  alt="Community celebration" 
+                  className="w-full h-64 object-cover rounded-2xl"
                 />
                 
-                {/* Floating avatars */}
-                <div className="absolute top-4 left-4 w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg">
-                  <img 
-                    src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
-                    alt="User" 
-                    className="w-10 h-10 rounded-full object-cover"
-                  />
+                {/* Floating elements */}
+                <div className="absolute top-4 left-4 w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center shadow-lg animate-bounce">
+                  <Rocket className="w-6 h-6 text-white" />
                 </div>
-                <div className="absolute top-8 right-8 w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg">
-                  <img 
-                    src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
-                    alt="User" 
-                    className="w-10 h-10 rounded-full object-cover"
-                  />
+                <div className="absolute top-8 right-8 w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center shadow-lg">
+                  <Trophy className="w-6 h-6 text-white" />
                 </div>
-                <div className="absolute bottom-8 left-8 w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg">
-                  <img 
-                    src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
-                    alt="User" 
-                    className="w-10 h-10 rounded-full object-cover"
-                  />
+                <div className="absolute bottom-8 left-8 w-12 h-12 bg-green-500 rounded-full flex items-center justify-center shadow-lg animate-pulse">
+                  <Target className="w-6 h-6 text-white" />
                 </div>
-                <div className="absolute bottom-4 right-4 w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg">
-                  <img 
-                    src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" 
-                    alt="User" 
-                    className="w-10 h-10 rounded-full object-cover"
-                  />
+              </div>
+
+              {/* Trust indicators */}
+              <div className="flex items-center justify-between mt-8 max-w-md mx-auto">
+                <div className="text-left">
+                  <div className="text-sm text-gray-600 mb-2">Trusted by</div>
+                  <div className="flex -space-x-2">
+                    {[1,2,3,4,5].map((i) => (
+                      <div key={i} className="w-8 h-8 bg-blue-500 rounded-full border-2 border-white flex items-center justify-center">
+                        <span className="text-white text-xs font-bold">{i}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <div className="text-right">
+                  <div className="flex items-center space-x-2 bg-white px-4 py-2 rounded-full shadow-lg">
+                    <Trophy className="w-5 h-5 text-yellow-500" />
+                    <div>
+                      <div className="text-sm font-bold text-gray-900">Best Community</div>
+                      <div className="text-xs text-gray-600">Award 2022</div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -152,236 +157,82 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Community Building Section */}
+      {/* Stats Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl p-12 text-white">
+            <div className="grid md:grid-cols-3 gap-8 text-center">
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-4">
+                  <Users className="w-8 h-8 text-white" />
+                </div>
+                <div className="text-4xl font-bold mb-2">40,000+</div>
+                <div className="text-blue-100">Community members</div>
+              </div>
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-4">
+                  <MessageCircle className="w-8 h-8 text-white" />
+                </div>
+                <div className="text-4xl font-bold mb-2">300+</div>
+                <div className="text-blue-100">Discord Sessions</div>
+              </div>
+              <div className="flex flex-col items-center">
+                <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-4">
+                  <Rocket className="w-8 h-8 text-white" />
+                </div>
+                <div className="text-4xl font-bold mb-2">1000+</div>
+                <div className="text-blue-100">Side projects done</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
       <section className="py-24 bg-gray-50">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold text-gray-900 mb-6">
-              Everything you need for build an<br />
-              engaging community.
+            <h2 className="text-4xl font-bold text-gray-900 mb-6">
+              Everything you need to build an<br />
+              amazing community experience
             </h2>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
-            <div className="bg-gradient-to-br from-emerald-400 to-teal-500 rounded-3xl p-12 text-white relative overflow-hidden">
-              <div className="relative z-10">
-                <h3 className="text-3xl font-bold mb-6">Build community and manage</h3>
-                <div className="space-y-4">
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="w-6 h-6" />
-                    <span className="text-lg">Seamless</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="w-6 h-6" />
-                    <span className="text-lg">Fully responsive and mobile optimized</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="w-6 h-6" />
-                    <span className="text-lg">Amazing customization</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="w-6 h-6" />
-                    <span className="text-lg">Outstanding customer support</span>
-                  </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+            <Card className="bg-white border-0 shadow-lg hover:shadow-xl transition-shadow">
+              <CardContent className="p-8 text-center">
+                <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                  <Users className="w-8 h-8 text-blue-600" />
                 </div>
-                <Button className="bg-white text-emerald-600 hover:bg-gray-100 mt-8 px-8 py-3">
-                  Learn more
-                </Button>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-3xl p-8 shadow-xl">
-              <div className="bg-gray-900 rounded-2xl p-8 text-white relative">
-                <div className="mb-6">
-                  <div className="flex items-center space-x-2 mb-4">
-                    <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                    <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                    <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                  </div>
-                  <h4 className="text-xl font-bold">One and Done</h4>
-                </div>
-                <div className="space-y-3">
-                  <div className="flex items-center justify-between p-3 bg-gray-800 rounded-lg">
-                    <span>Members</span>
-                    <TrendingUp className="w-5 h-5 text-emerald-400" />
-                  </div>
-                  <div className="flex items-center justify-between p-3 bg-gray-800 rounded-lg">
-                    <span>Posts</span>
-                    <BarChart3 className="w-5 h-5 text-blue-400" />
-                  </div>
-                  <div className="flex items-center justify-between p-3 bg-gray-800 rounded-lg">
-                    <span>Engagement</span>
-                    <Heart className="w-5 h-5 text-red-400" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Support Section */}
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold text-gray-900 mb-6">
-              Support clients of all<br />
-              shapes and sizes.
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Card className="bg-emerald-500 text-white border-0 overflow-hidden">
-              <CardContent className="p-8">
-                <Users className="w-12 h-12 mb-6" />
-                <h3 className="text-2xl font-bold mb-4">Teams & Startups</h3>
-                <p className="text-emerald-100">Build and scale your community from day one with powerful tools.</p>
+                <h3 className="text-xl font-bold mb-4 text-gray-900">Community Building</h3>
+                <p className="text-gray-600">Connect with like-minded builders and grow together</p>
               </CardContent>
             </Card>
 
-            <Card className="bg-blue-500 text-white border-0 overflow-hidden">
-              <CardContent className="p-8">
-                <Building2 className="w-12 h-12 mb-6" />
-                <h3 className="text-2xl font-bold mb-4">Small businesses</h3>
-                <p className="text-blue-100">Engage your customers and build lasting relationships.</p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-purple-500 text-white border-0 overflow-hidden">
-              <CardContent className="p-8">
-                <Globe className="w-12 h-12 mb-6" />
-                <h3 className="text-2xl font-bold mb-4">Global enterprises</h3>
-                <p className="text-purple-100">Scale your community across regions and teams.</p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-orange-500 text-white border-0 overflow-hidden">
-              <CardContent className="p-8">
-                <GraduationCap className="w-12 h-12 mb-6" />
-                <h3 className="text-2xl font-bold mb-4">Leading universities</h3>
-                <p className="text-orange-100">Connect students, faculty, and alumni in meaningful ways.</p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-pink-500 text-white border-0 overflow-hidden">
-              <CardContent className="p-8">
-                <Heart className="w-12 h-12 mb-6" />
-                <h3 className="text-2xl font-bold mb-4">Non-profits</h3>
-                <p className="text-pink-100">Mobilize supporters and volunteers for your cause.</p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-indigo-500 text-white border-0 overflow-hidden">
-              <CardContent className="p-8">
-                <Zap className="w-12 h-12 mb-6" />
-                <h3 className="text-2xl font-bold mb-4">Gov & Enterprise</h3>
-                <p className="text-indigo-100">Secure, scalable solutions for large organizations.</p>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-      </section>
-
-      {/* Community Icons Section */}
-      <section className="py-24 bg-gray-50">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-5xl font-bold text-gray-900 mb-6">
-            Community,<br />
-            without Limits.
-          </h2>
-          <p className="text-xl text-gray-600 mb-16">
-            Connect and engage with your audience across all platforms and touchpoints.
-          </p>
-
-          {/* Social Platform Icons */}
-          <div className="relative max-w-lg mx-auto h-80 mb-16">
-            <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-16 h-16 bg-blue-500 rounded-2xl flex items-center justify-center shadow-xl">
-              <MessageCircle className="w-8 h-8 text-white" />
-            </div>
-            <div className="absolute top-12 right-12 w-16 h-16 bg-emerald-500 rounded-2xl flex items-center justify-center shadow-xl">
-              <Users className="w-8 h-8 text-white" />
-            </div>
-            <div className="absolute top-20 left-8 w-16 h-16 bg-orange-500 rounded-2xl flex items-center justify-center shadow-xl">
-              <Heart className="w-8 h-8 text-white" />
-            </div>
-            <div className="absolute bottom-20 right-8 w-16 h-16 bg-red-500 rounded-2xl flex items-center justify-center shadow-xl">
-              <Star className="w-8 h-8 text-white" />
-            </div>
-            <div className="absolute bottom-12 left-12 w-16 h-16 bg-pink-500 rounded-2xl flex items-center justify-center shadow-xl">
-              <UserPlus className="w-8 h-8 text-white" />
-            </div>
-            <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-16 h-16 bg-purple-600 rounded-2xl flex items-center justify-center shadow-xl">
-              <Globe className="w-8 h-8 text-white" />
-            </div>
-            <div className="absolute top-1/2 right-0 transform -translate-y-1/2 w-16 h-16 bg-blue-400 rounded-2xl flex items-center justify-center shadow-xl">
-              <Shield className="w-8 h-8 text-white" />
-            </div>
-            <div className="absolute top-1/2 left-0 transform -translate-y-1/2 w-16 h-16 bg-indigo-600 rounded-2xl flex items-center justify-center shadow-xl">
-              <Zap className="w-8 h-8 text-white" />
-            </div>
-          </div>
-
-          <Button className="bg-emerald-500 text-white hover:bg-emerald-600 px-10 py-4 text-lg">
-            Start building
-          </Button>
-        </div>
-      </section>
-
-      {/* Cross Platform Section */}
-      <section className="py-24 bg-white">
-        <div className="container mx-auto px-6 text-center">
-          <h2 className="text-5xl font-bold text-gray-900 mb-6">
-            iOS. Android. Web.<br />
-            It just works.
-          </h2>
-          <p className="text-xl text-gray-600 mb-16">
-            Your community experience across every device and platform.
-          </p>
-
-          <div className="flex justify-center space-x-6 mb-16">
-            <Button variant="outline" className="bg-black text-white border-black hover:bg-gray-800 px-8 py-4 text-lg">
-              <Monitor className="w-5 h-5 mr-3" />
-              App Store
-            </Button>
-            <Button variant="outline" className="bg-black text-white border-black hover:bg-gray-800 px-8 py-4 text-lg">
-              <Smartphone className="w-5 h-5 mr-3" />
-              Google Play
-            </Button>
-          </div>
-
-          {/* Device Mockups */}
-          <div className="relative max-w-6xl mx-auto">
-            <div className="grid md:grid-cols-3 gap-8 items-end">
-              <div className="bg-white rounded-3xl shadow-2xl p-8">
-                <div className="bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl h-64 flex items-center justify-center">
-                  <Monitor className="w-16 h-16 text-gray-400" />
+            <Card className="bg-white border-0 shadow-lg hover:shadow-xl transition-shadow">
+              <CardContent className="p-8 text-center">
+                <div className="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                  <Target className="w-8 h-8 text-green-600" />
                 </div>
-              </div>
-              <div className="bg-white rounded-3xl shadow-2xl p-6">
-                <div className="bg-gradient-to-br from-gray-100 to-gray-200 rounded-3xl h-80 flex items-center justify-center">
-                  <Smartphone className="w-12 h-12 text-gray-400" />
-                </div>
-              </div>
-              <div className="bg-white rounded-3xl shadow-2xl p-8">
-                <div className="bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl h-64 flex items-center justify-center">
-                  <Globe className="w-16 h-16 text-gray-400" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+                <h3 className="text-xl font-bold mb-4 text-gray-900">Skill Development</h3>
+                <p className="text-gray-600">Learn new skills and improve your existing ones</p>
+              </CardContent>
+            </Card>
 
-      {/* CTA Section */}
-      <section className="py-24 bg-emerald-500">
-        <div className="container mx-auto px-6 text-center">
-          <div className="max-w-3xl mx-auto text-white">
-            <h2 className="text-5xl font-bold mb-8 leading-tight">
-              Ready to create your<br />
-              community experience?
-            </h2>
-            <Button className="bg-white text-emerald-600 hover:bg-gray-100 px-10 py-4 text-lg">
-              Get started now
+            <Card className="bg-white border-0 shadow-lg hover:shadow-xl transition-shadow">
+              <CardContent className="p-8 text-center">
+                <div className="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                  <Rocket className="w-8 h-8 text-purple-600" />
+                </div>
+                <h3 className="text-xl font-bold mb-4 text-gray-900">Project Support</h3>
+                <p className="text-gray-600">Get help and feedback on your side projects</p>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="text-center">
+            <Button className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-4 text-lg rounded-lg">
+              Join Our Community
               <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
           </div>
@@ -389,58 +240,55 @@ const Index = () => {
       </section>
 
       {/* Footer */}
-      <footer className="py-16 bg-gray-900 text-white">
+      <footer className="py-16 bg-white border-t">
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-12">
             <div>
               <div className="flex items-center space-x-3 mb-6">
-                <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center">
-                  <span className="text-gray-900 font-bold text-sm">G</span>
+                <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                  <span className="text-white font-bold text-sm">M</span>
                 </div>
-                <span className="text-xl font-bold">Grevice</span>
+                <span className="text-xl font-bold text-gray-900">MarkitUp</span>
               </div>
-              <p className="text-gray-400 leading-relaxed">
-                Building communities that connect and engage.
+              <p className="text-gray-600 leading-relaxed">
+                Building India's first builders community to help individuals grow.
               </p>
             </div>
             <div>
-              <h4 className="font-bold mb-6 text-lg">Solutions</h4>
-              <ul className="space-y-3 text-gray-400">
-                <li><Link to="#" className="hover:text-white transition-colors">Community Building</Link></li>
-                <li><Link to="#" className="hover:text-white transition-colors">Engagement Tools</Link></li>
-                <li><Link to="#" className="hover:text-white transition-colors">Analytics</Link></li>
-                <li><Link to="#" className="hover:text-white transition-colors">Integrations</Link></li>
+              <h4 className="font-bold mb-6 text-lg text-gray-900">Community</h4>
+              <ul className="space-y-3 text-gray-600">
+                <li><Link to="#" className="hover:text-blue-600 transition-colors">Discord</Link></li>
+                <li><Link to="#" className="hover:text-blue-600 transition-colors">Events</Link></li>
+                <li><Link to="#" className="hover:text-blue-600 transition-colors">Projects</Link></li>
+                <li><Link to="#" className="hover:text-blue-600 transition-colors">Mentorship</Link></li>
               </ul>
             </div>
             <div>
-              <h4 className="font-bold mb-6 text-lg">Resources</h4>
-              <ul className="space-y-3 text-gray-400">
-                <li><Link to="#" className="hover:text-white transition-colors">Documentation</Link></li>
-                <li><Link to="#" className="hover:text-white transition-colors">API</Link></li>
-                <li><Link to="#" className="hover:text-white transition-colors">Help Center</Link></li>
-                <li><Link to="#" className="hover:text-white transition-colors">Community</Link></li>
+              <h4 className="font-bold mb-6 text-lg text-gray-900">Resources</h4>
+              <ul className="space-y-3 text-gray-600">
+                <li><Link to="#" className="hover:text-blue-600 transition-colors">Getting Started</Link></li>
+                <li><Link to="#" className="hover:text-blue-600 transition-colors">Guidelines</Link></li>
+                <li><Link to="#" className="hover:text-blue-600 transition-colors">Help Center</Link></li>
+                <li><Link to="#" className="hover:text-blue-600 transition-colors">FAQ</Link></li>
               </ul>
             </div>
             <div>
-              <h4 className="font-bold mb-6 text-lg">Company</h4>
-              <ul className="space-y-3 text-gray-400">
-                <li><Link to="#" className="hover:text-white transition-colors">About</Link></li>
-                <li><Link to="#" className="hover:text-white transition-colors">Blog</Link></li>
-                <li><Link to="#" className="hover:text-white transition-colors">Careers</Link></li>
-                <li><Link to="#" className="hover:text-white transition-colors">Contact</Link></li>
+              <h4 className="font-bold mb-6 text-lg text-gray-900">Company</h4>
+              <ul className="space-y-3 text-gray-600">
+                <li><Link to="#" className="hover:text-blue-600 transition-colors">About</Link></li>
+                <li><Link to="#" className="hover:text-blue-600 transition-colors">Blog</Link></li>
+                <li><Link to="#" className="hover:text-blue-600 transition-colors">Careers</Link></li>
+                <li><Link to="#" className="hover:text-blue-600 transition-colors">Contact</Link></li>
               </ul>
             </div>
           </div>
-          <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-            <p>&copy; 2024 Grevice. All rights reserved.</p>
+          <div className="border-t border-gray-200 mt-12 pt-8 text-center text-gray-600">
+            <p>&copy; 2024 MarkitUp. All rights reserved.</p>
           </div>
         </div>
       </footer>
     </div>
   );
 };
-
-// Missing import
-import { Building2 } from "lucide-react";
 
 export default Index;
