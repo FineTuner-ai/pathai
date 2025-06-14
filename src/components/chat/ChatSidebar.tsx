@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -112,9 +111,14 @@ const ChatSidebar = ({ selectedChat, setSelectedChat, onCloseSidebar, searchQuer
 
   return (
     <div className="w-80 lg:w-80 md:w-72 sm:w-64 bg-white border-r border-gray-200 flex flex-col h-screen">
-      {/* Header */}
+      {/* Logo Section */}
       <div className="flex items-center justify-between p-4 border-b border-gray-100">
-        <h2 className="font-semibold text-gray-900">Community</h2>
+        <div className="flex items-center space-x-2">
+          <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+            <span className="text-white font-bold text-sm">L</span>
+          </div>
+          <h2 className="font-semibold text-gray-900">Community</h2>
+        </div>
         <Button variant="ghost" size="icon" onClick={onCloseSidebar} className="lg:hidden">
           <X className="w-4 h-4" />
         </Button>
