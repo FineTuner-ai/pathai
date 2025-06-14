@@ -31,7 +31,14 @@ import {
   UserPlus,
   BarChart3,
   Rocket,
-  Trophy
+  Trophy,
+  Sparkles,
+  University,
+  UserCheck,
+  FileSearch,
+  DollarSign,
+  Send,
+  PenTool
 } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
@@ -40,17 +47,17 @@ const Index = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50/30">
       {/* Header */}
-      <header className="bg-white sticky top-0 z-50 shadow-sm border-b">
+      <header className="bg-white/80 sticky top-0 z-50 shadow-sm border-b backdrop-blur-md">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-8">
               <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-sm">M</span>
+                <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
+                  <Brain className="w-6 h-6 text-white" />
                 </div>
-                <span className="text-xl font-bold text-gray-900">MarkitUp</span>
+                <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Agentics AI</span>
               </div>
               <nav className="hidden md:flex items-center space-x-8">
                 <Link to="#" className="text-gray-600 hover:text-blue-600 transition-colors font-medium">
@@ -68,7 +75,7 @@ const Index = () => {
               </nav>
             </div>
             <div className="hidden md:flex items-center space-x-4">
-              <Button className="bg-blue-600 text-white hover:bg-blue-700 px-6 py-2 rounded-lg">
+              <Button variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-6 py-2 rounded-xl transition-all duration-300">
                 Join us on Discord
               </Button>
             </div>
@@ -84,70 +91,108 @@ const Index = () => {
       </header>
 
       {/* Hero Section */}
-      <section className="py-20 bg-gray-50 relative overflow-hidden">
-        {/* Decorative elements */}
-        <div className="absolute top-20 left-20 text-blue-300">
-          <div className="w-6 h-6 rotate-45 border-2 border-current"></div>
+      <section className="py-20 relative overflow-hidden">
+        {/* Animated Background Elements */}
+        <div className="absolute top-20 left-20 w-20 h-20 bg-blue-500/10 rounded-full blur-xl animate-pulse"></div>
+        <div className="absolute top-40 right-40 w-32 h-32 bg-purple-500/10 rounded-full blur-2xl animate-bounce"></div>
+        <div className="absolute bottom-40 left-40 w-24 h-24 bg-emerald-500/10 rounded-full blur-xl animate-pulse"></div>
+        
+        {/* Floating Icons */}
+        <div className="absolute top-32 right-20 w-16 h-16 bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl flex items-center justify-center animate-float">
+          <University className="w-8 h-8 text-blue-500" />
         </div>
-        <div className="absolute top-32 right-32 text-blue-300">
-          <div className="w-4 h-4 rotate-45 border-2 border-current"></div>
+        <div className="absolute top-64 left-32 w-14 h-14 bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl flex items-center justify-center animate-bounce">
+          <Brain className="w-7 h-7 text-purple-500" />
         </div>
-        <div className="absolute bottom-40 left-40 text-blue-300">
-          <div className="w-8 h-8 rotate-45 border-2 border-current"></div>
-        </div>
-        <div className="absolute bottom-32 right-20 text-blue-300">
-          <div className="w-6 h-6 rotate-45 border-2 border-current"></div>
+        <div className="absolute bottom-32 right-32 w-16 h-16 bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl flex items-center justify-center animate-pulse">
+          <Sparkles className="w-8 h-8 text-emerald-500" />
         </div>
 
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-              Join India's First<br />
-              <span className="text-blue-600">Builders Community</span>
+            <div className="inline-flex items-center space-x-2 bg-blue-100 text-blue-600 px-4 py-2 rounded-full text-sm font-medium mb-6 animate-fade-in">
+              <Sparkles className="w-4 h-4" />
+              <span>Detailed Intelligent System Workflow</span>
+            </div>
+            
+            <h1 className="text-5xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight animate-scale-in">
+              <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-700 bg-clip-text text-transparent">
+                Agentics AI:
+              </span>
+              <br />
+              <span className="text-gray-800">
+                Intelligent Academic
+              </span>
+              <br />
+              <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+                Discovery Platform
+              </span>
             </h1>
-            <p className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto">
-              We help individuals to grow by unleashing the potential of social media 🚀
+            
+            <p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed animate-fade-in">
+              From university discovery to personalized applications - our AI agents work together to streamline your academic journey with intelligent matching, professor insights, and tailored application materials 🚀
             </p>
 
-            {/* Community Image with floating avatars */}
-            <div className="relative max-w-2xl mx-auto mb-16">
-              <div className="bg-white rounded-3xl p-8 shadow-xl relative overflow-hidden">
+            {/* Main Action Buttons */}
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-16">
+              <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 text-lg rounded-2xl shadow-2xl hover:shadow-purple-500/25 transition-all duration-300 transform hover:scale-105 group">
+                <Rocket className="w-6 h-6 mr-3 group-hover:animate-bounce" />
+                Start Applications
+                <ArrowRight className="w-5 h-5 ml-3 group-hover:translate-x-1 transition-transform" />
+              </Button>
+              
+              <Button variant="outline" className="border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-8 py-4 text-lg rounded-2xl shadow-lg hover:shadow-blue-500/25 transition-all duration-300 transform hover:scale-105 group">
+                <Users className="w-6 h-6 mr-3 group-hover:animate-pulse" />
+                Join Community
+                <MessageCircle className="w-5 h-5 ml-3 group-hover:animate-bounce transition-all" />
+              </Button>
+            </div>
+
+            {/* Community Showcase with floating avatars */}
+            <div className="relative max-w-4xl mx-auto mb-16">
+              <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 shadow-2xl border border-white/20 relative overflow-hidden">
                 <img 
                   src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
-                  alt="Community celebration" 
-                  className="w-full h-64 object-cover rounded-2xl"
+                  alt="Academic community collaboration" 
+                  className="w-full h-72 object-cover rounded-2xl shadow-lg"
                 />
                 
-                {/* Floating elements */}
-                <div className="absolute top-4 left-4 w-12 h-12 bg-orange-500 rounded-full flex items-center justify-center shadow-lg animate-bounce">
-                  <Rocket className="w-6 h-6 text-white" />
+                {/* Floating AI Agent Icons */}
+                <div className="absolute top-4 left-4 w-14 h-14 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center shadow-xl animate-bounce">
+                  <Search className="w-7 h-7 text-white" />
                 </div>
-                <div className="absolute top-8 right-8 w-12 h-12 bg-yellow-500 rounded-full flex items-center justify-center shadow-lg">
-                  <Trophy className="w-6 h-6 text-white" />
+                <div className="absolute top-8 right-8 w-14 h-14 bg-gradient-to-r from-emerald-500 to-blue-500 rounded-full flex items-center justify-center shadow-xl animate-pulse">
+                  <UserCheck className="w-7 h-7 text-white" />
                 </div>
-                <div className="absolute bottom-8 left-8 w-12 h-12 bg-green-500 rounded-full flex items-center justify-center shadow-lg animate-pulse">
-                  <Target className="w-6 h-6 text-white" />
+                <div className="absolute bottom-8 left-8 w-14 h-14 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-xl animate-bounce">
+                  <Mail className="w-7 h-7 text-white" />
+                </div>
+                <div className="absolute bottom-4 right-4 w-14 h-14 bg-gradient-to-r from-orange-500 to-red-500 rounded-full flex items-center justify-center shadow-xl animate-pulse">
+                  <PenTool className="w-7 h-7 text-white" />
                 </div>
               </div>
 
-              {/* Trust indicators */}
-              <div className="flex items-center justify-between mt-8 max-w-md mx-auto">
+              {/* Trust indicators with enhanced styling */}
+              <div className="flex items-center justify-between mt-8 max-w-2xl mx-auto">
                 <div className="text-left">
-                  <div className="text-sm text-gray-600 mb-2">Trusted by</div>
-                  <div className="flex -space-x-2">
-                    {[1,2,3,4,5].map((i) => (
-                      <div key={i} className="w-8 h-8 bg-blue-500 rounded-full border-2 border-white flex items-center justify-center">
-                        <span className="text-white text-xs font-bold">{i}</span>
+                  <div className="text-sm text-gray-600 mb-3 font-medium">Trusted by</div>
+                  <div className="flex -space-x-3">
+                    {[1,2,3,4,5,6].map((i) => (
+                      <div key={i} className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full border-3 border-white flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
+                        <span className="text-white text-sm font-bold">{i}</span>
                       </div>
                     ))}
+                    <div className="w-10 h-10 bg-gray-100 rounded-full border-3 border-white flex items-center justify-center shadow-lg">
+                      <span className="text-gray-600 text-xs font-bold">40K+</span>
+                    </div>
                   </div>
                 </div>
                 <div className="text-right">
-                  <div className="flex items-center space-x-2 bg-white px-4 py-2 rounded-full shadow-lg">
-                    <Trophy className="w-5 h-5 text-yellow-500" />
-                    <div>
-                      <div className="text-sm font-bold text-gray-900">Best Community</div>
-                      <div className="text-xs text-gray-600">Award 2022</div>
+                  <div className="flex items-center space-x-3 bg-gradient-to-r from-yellow-400 to-orange-500 px-6 py-3 rounded-2xl shadow-2xl">
+                    <Trophy className="w-6 h-6 text-white" />
+                    <div className="text-white">
+                      <div className="text-lg font-bold">Best AI Platform</div>
+                      <div className="text-sm opacity-90">Award 2024</div>
                     </div>
                   </div>
                 </div>
@@ -157,82 +202,114 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-16 bg-white">
+      {/* Stats Section with Enhanced Design */}
+      <section className="py-20 bg-white/50 backdrop-blur-sm">
         <div className="container mx-auto px-6">
-          <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl p-12 text-white">
+          <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-blue-700 rounded-3xl p-12 text-white shadow-2xl">
             <div className="grid md:grid-cols-3 gap-8 text-center">
-              <div className="flex flex-col items-center">
-                <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-4">
-                  <Users className="w-8 h-8 text-white" />
+              <div className="flex flex-col items-center group hover:scale-105 transition-transform">
+                <div className="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-3xl flex items-center justify-center mb-6 group-hover:rotate-12 transition-transform">
+                  <University className="w-10 h-10 text-white" />
                 </div>
-                <div className="text-4xl font-bold mb-2">40,000+</div>
-                <div className="text-blue-100">Community members</div>
+                <div className="text-5xl font-bold mb-3">300+</div>
+                <div className="text-blue-100 text-lg">Universities Covered</div>
               </div>
-              <div className="flex flex-col items-center">
-                <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-4">
-                  <MessageCircle className="w-8 h-8 text-white" />
+              <div className="flex flex-col items-center group hover:scale-105 transition-transform">
+                <div className="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-3xl flex items-center justify-center mb-6 group-hover:rotate-12 transition-transform">
+                  <UserCheck className="w-10 h-10 text-white" />
                 </div>
-                <div className="text-4xl font-bold mb-2">300+</div>
-                <div className="text-blue-100">Discord Sessions</div>
+                <div className="text-5xl font-bold mb-3">40,000+</div>
+                <div className="text-blue-100 text-lg">Students Matched</div>
               </div>
-              <div className="flex flex-col items-center">
-                <div className="w-16 h-16 bg-white/20 rounded-2xl flex items-center justify-center mb-4">
-                  <Rocket className="w-8 h-8 text-white" />
+              <div className="flex flex-col items-center group hover:scale-105 transition-transform">
+                <div className="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-3xl flex items-center justify-center mb-6 group-hover:rotate-12 transition-transform">
+                  <Trophy className="w-10 h-10 text-white" />
                 </div>
-                <div className="text-4xl font-bold mb-2">1000+</div>
-                <div className="text-blue-100">Side projects done</div>
+                <div className="text-5xl font-bold mb-3">1000+</div>
+                <div className="text-blue-100 text-lg">Success Stories</div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="py-24 bg-gray-50">
+      {/* AI Agents Workflow Section */}
+      <section className="py-24 bg-gradient-to-br from-gray-50 to-blue-50/30">
         <div className="container mx-auto px-6">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              Everything you need to build an<br />
-              amazing community experience
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+              Our Intelligent AI Agents
             </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Nine specialized AI agents working together to create your complete application toolkit
+            </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-            <Card className="bg-white border-0 shadow-lg hover:shadow-xl transition-shadow">
+            <Card className="bg-white/80 backdrop-blur-sm border-0 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 group">
               <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <Users className="w-8 h-8 text-blue-600" />
+                <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 transition-transform">
+                  <Search className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-xl font-bold mb-4 text-gray-900">Community Building</h3>
-                <p className="text-gray-600">Connect with like-minded builders and grow together</p>
+                <h3 className="text-xl font-bold mb-4 text-gray-900">University Discovery</h3>
+                <p className="text-gray-600">Semantic search across global universities matching your research interests</p>
               </CardContent>
             </Card>
 
-            <Card className="bg-white border-0 shadow-lg hover:shadow-xl transition-shadow">
+            <Card className="bg-white/80 backdrop-blur-sm border-0 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 group">
               <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <Target className="w-8 h-8 text-green-600" />
+                <div className="w-16 h-16 bg-gradient-to-r from-emerald-500 to-blue-500 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 transition-transform">
+                  <UserCheck className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-xl font-bold mb-4 text-gray-900">Skill Development</h3>
-                <p className="text-gray-600">Learn new skills and improve your existing ones</p>
+                <h3 className="text-xl font-bold mb-4 text-gray-900">Professor Matching</h3>
+                <p className="text-gray-600">AI-powered matching with professors whose research aligns with yours</p>
               </CardContent>
             </Card>
 
-            <Card className="bg-white border-0 shadow-lg hover:shadow-xl transition-shadow">
+            <Card className="bg-white/80 backdrop-blur-sm border-0 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 group">
               <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <Rocket className="w-8 h-8 text-purple-600" />
+                <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 transition-transform">
+                  <Brain className="w-8 h-8 text-white" />
                 </div>
-                <h3 className="text-xl font-bold mb-4 text-gray-900">Project Support</h3>
-                <p className="text-gray-600">Get help and feedback on your side projects</p>
+                <h3 className="text-xl font-bold mb-4 text-gray-900">Professor Insights</h3>
+                <p className="text-gray-600">Deep research analysis and publication summaries for targeted outreach</p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/80 backdrop-blur-sm border-0 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 group">
+              <CardContent className="p-8 text-center">
+                <div className="w-16 h-16 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 transition-transform">
+                  <DollarSign className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-bold mb-4 text-gray-900">Scholarship Discovery</h3>
+                <p className="text-gray-600">Find funding opportunities including fellowships and external scholarships</p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/80 backdrop-blur-sm border-0 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 group">
+              <CardContent className="p-8 text-center">
+                <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 transition-transform">
+                  <Shield className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-bold mb-4 text-gray-900">Fee Waiver Agent</h3>
+                <p className="text-gray-600">Automatically find and apply for application fee waivers</p>
+              </CardContent>
+            </Card>
+
+            <Card className="bg-white/80 backdrop-blur-sm border-0 shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 group">
+              <CardContent className="p-8 text-center">
+                <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:rotate-12 transition-transform">
+                  <Send className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-bold mb-4 text-gray-900">Cold Email Generator</h3>
+                <p className="text-gray-600">Personalized outreach emails based on your CV and professor research</p>
               </CardContent>
             </Card>
           </div>
 
           <div className="text-center">
-            <Button className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-4 text-lg rounded-lg">
-              Join Our Community
+            <Button className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white px-8 py-4 text-lg rounded-2xl shadow-xl hover:shadow-purple-500/25 transition-all duration-300 transform hover:scale-105">
+              Explore All AI Agents
               <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
           </div>
@@ -240,36 +317,36 @@ const Index = () => {
       </section>
 
       {/* Footer */}
-      <footer className="py-16 bg-white border-t">
+      <footer className="py-16 bg-white/80 backdrop-blur-sm border-t">
         <div className="container mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-12">
             <div>
               <div className="flex items-center space-x-3 mb-6">
-                <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-sm">M</span>
+                <div className="w-10 h-10 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center">
+                  <Brain className="w-6 h-6 text-white" />
                 </div>
-                <span className="text-xl font-bold text-gray-900">MarkitUp</span>
+                <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Agentics AI</span>
               </div>
               <p className="text-gray-600 leading-relaxed">
-                Building India's first builders community to help individuals grow.
+                Intelligent academic discovery platform powered by AI agents for seamless university applications.
               </p>
             </div>
             <div>
-              <h4 className="font-bold mb-6 text-lg text-gray-900">Community</h4>
+              <h4 className="font-bold mb-6 text-lg text-gray-900">Platform</h4>
               <ul className="space-y-3 text-gray-600">
-                <li><Link to="#" className="hover:text-blue-600 transition-colors">Discord</Link></li>
-                <li><Link to="#" className="hover:text-blue-600 transition-colors">Events</Link></li>
-                <li><Link to="#" className="hover:text-blue-600 transition-colors">Projects</Link></li>
-                <li><Link to="#" className="hover:text-blue-600 transition-colors">Mentorship</Link></li>
+                <li><Link to="#" className="hover:text-blue-600 transition-colors">University Search</Link></li>
+                <li><Link to="#" className="hover:text-blue-600 transition-colors">Professor Matching</Link></li>
+                <li><Link to="#" className="hover:text-blue-600 transition-colors">Scholarship Finder</Link></li>
+                <li><Link to="#" className="hover:text-blue-600 transition-colors">Application Tools</Link></li>
               </ul>
             </div>
             <div>
               <h4 className="font-bold mb-6 text-lg text-gray-900">Resources</h4>
               <ul className="space-y-3 text-gray-600">
                 <li><Link to="#" className="hover:text-blue-600 transition-colors">Getting Started</Link></li>
-                <li><Link to="#" className="hover:text-blue-600 transition-colors">Guidelines</Link></li>
+                <li><Link to="#" className="hover:text-blue-600 transition-colors">AI Agent Guide</Link></li>
+                <li><Link to="#" className="hover:text-blue-600 transition-colors">Success Stories</Link></li>
                 <li><Link to="#" className="hover:text-blue-600 transition-colors">Help Center</Link></li>
-                <li><Link to="#" className="hover:text-blue-600 transition-colors">FAQ</Link></li>
               </ul>
             </div>
             <div>
@@ -283,7 +360,7 @@ const Index = () => {
             </div>
           </div>
           <div className="border-t border-gray-200 mt-12 pt-8 text-center text-gray-600">
-            <p>&copy; 2024 MarkitUp. All rights reserved.</p>
+            <p>&copy; 2024 Agentics AI. All rights reserved.</p>
           </div>
         </div>
       </footer>
