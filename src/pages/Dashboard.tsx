@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { 
@@ -22,13 +23,14 @@ import {
 const Dashboard = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const location = useLocation();
 
   const navItems = [
-    { id: "new", name: "New", icon: <Plus className="w-5 h-5" /> },
-    { id: "discover", name: "Discover", icon: <Globe className="w-5 h-5" /> },
-    { id: "history", name: "History", icon: <History className="w-5 h-5" /> },
-    { id: "profile", name: "Profile", icon: <User className="w-5 h-5" /> },
-    { id: "more", name: "More", icon: <Settings className="w-5 h-5" /> },
+    { id: "new", name: "New", icon: <Plus className="w-5 h-5" />, path: "/new" },
+    { id: "discover", name: "Discover", icon: <Globe className="w-5 h-5" />, path: "/discovery" },
+    { id: "history", name: "History", icon: <History className="w-5 h-5" />, path: "/dashboard" },
+    { id: "profile", name: "Profile", icon: <User className="w-5 h-5" />, path: "/profile" },
+    { id: "more", name: "More", icon: <Settings className="w-5 h-5" />, path: "/more" },
   ];
 
   const quickActions = [
@@ -84,17 +86,18 @@ const Dashboard = () => {
         <nav className="flex-1 p-4">
           <div className="space-y-2">
             {navItems.map((item) => (
-              <Button
-                key={item.id}
-                variant="ghost"
-                className={`w-full ${sidebarCollapsed ? 'justify-center px-3' : 'justify-start'} text-gray-600 hover:text-gray-900 hover:bg-gray-50 h-10`}
-                title={sidebarCollapsed ? item.name : undefined}
-              >
-                {item.icon}
-                {!sidebarCollapsed && (
-                  <span className="ml-3 text-sm font-medium">{item.name}</span>
-                )}
-              </Button>
+              <Link key={item.id} to={item.path}>
+                <Button
+                  variant="ghost"
+                  className={`w-full ${sidebarCollapsed ? 'justify-center px-3' : 'justify-start'} text-gray-600 hover:text-gray-900 hover:bg-gray-50 h-10 ${location.pathname === item.path ? 'bg-gray-100 text-gray-900' : ''}`}
+                  title={sidebarCollapsed ? item.name : undefined}
+                >
+                  {item.icon}
+                  {!sidebarCollapsed && (
+                    <span className="ml-3 text-sm font-medium">{item.name}</span>
+                  )}
+                </Button>
+              </Link>
             ))}
           </div>
         </nav>
