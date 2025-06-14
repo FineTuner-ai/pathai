@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import { Plus, Menu, X, Calendar, Search, Crown } from "lucide-react";
+import { Plus, Menu, X, Calendar, Search } from "lucide-react";
 
 interface ChatSidebarProps {
   selectedChat: string;
@@ -15,7 +15,7 @@ interface ChatSidebarProps {
 }
 
 const ChatSidebar = ({ selectedChat, setSelectedChat, onCloseSidebar, searchQuery, setSearchQuery }: ChatSidebarProps) => {
-  const [isAdmin] = useState(true); // In real app, this would come from auth context
+  const [isAdmin] = useState(true);
   const [feeds, setFeeds] = useState([
     {
       id: "welcome",
@@ -114,12 +114,7 @@ const ChatSidebar = ({ selectedChat, setSelectedChat, onCloseSidebar, searchQuer
     <div className="w-80 lg:w-80 md:w-72 sm:w-64 bg-white border-r border-gray-200 flex flex-col h-screen">
       {/* Header */}
       <div className="flex items-center justify-between p-4 border-b border-gray-100">
-        <div className="flex items-center space-x-2">
-          <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
-            <span className="text-white font-bold text-sm">S</span>
-          </div>
-          {isAdmin && <Crown className="w-4 h-4 text-yellow-500" />}
-        </div>
+        <h2 className="font-semibold text-gray-900">Community</h2>
         <Button variant="ghost" size="icon" onClick={onCloseSidebar} className="lg:hidden">
           <X className="w-4 h-4" />
         </Button>
