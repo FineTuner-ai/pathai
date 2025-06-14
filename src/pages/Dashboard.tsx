@@ -11,17 +11,12 @@ import {
   Award, 
   Upload,
   Mic,
-  Paperclip,
-  History,
-  User,
-  Settings,
+  Camera,
   Clock,
   ChevronLeft,
   ChevronRight,
-  Home,
-  Compass,
-  BookOpen,
-  HelpCircle
+  Settings,
+  ArrowRight
 } from "lucide-react";
 
 const Dashboard = () => {
@@ -30,11 +25,11 @@ const Dashboard = () => {
   const [activeTab, setActiveTab] = useState("home");
 
   const navItems = [
-    { id: "home", name: "Home", icon: <Home className="w-5 h-5" /> },
-    { id: "discover", name: "Discover", icon: <Compass className="w-5 h-5" /> },
-    { id: "library", name: "Library", icon: <BookOpen className="w-5 h-5" /> },
-    { id: "profile", name: "Profile", icon: <User className="w-5 h-5" /> },
-    { id: "help", name: "Help", icon: <HelpCircle className="w-5 h-5" /> },
+    { id: "home", name: "Home", icon: <Plus className="w-5 h-5" /> },
+    { id: "discover", name: "Discover", icon: <Clock className="w-5 h-5" /> },
+    { id: "library", name: "Library", icon: <Upload className="w-5 h-5" /> },
+    { id: "profile", name: "Profile", icon: <Search className="w-5 h-5" /> },
+    { id: "help", name: "Help", icon: <Settings className="w-5 h-5" /> },
   ];
 
   const renderContent = () => {
@@ -42,11 +37,13 @@ const Dashboard = () => {
       case "home":
         return (
           <>
-            {/* Welcome Section with Centered Logo */}
+            {/* Welcome Section with Logo Only */}
             <div className="text-center mb-12">
-              <h1 className="text-4xl font-bold text-gray-900 mb-8">
-                agentics
-              </h1>
+              <div className="flex justify-center mb-8">
+                <div className="w-12 h-12 bg-gradient-to-br from-teal-500 to-teal-600 rounded-lg flex items-center justify-center">
+                  <Brain className="w-8 h-8 text-white" />
+                </div>
+              </div>
               
               {/* Centered Search Box - Modern and larger */}
               <div className="max-w-4xl mx-auto mb-8">
@@ -66,7 +63,7 @@ const Dashboard = () => {
                         size="sm" 
                         className="text-gray-400 hover:text-teal-600 hover:bg-teal-50 p-2 h-auto rounded-lg"
                       >
-                        <Paperclip className="w-5 h-5" />
+                        <Camera className="w-5 h-5" />
                       </Button>
                       <Button 
                         variant="ghost" 
@@ -76,9 +73,11 @@ const Dashboard = () => {
                         <Mic className="w-5 h-5" />
                       </Button>
                       <Button 
-                        className="bg-teal-600 hover:bg-teal-700 text-white px-6 py-2 rounded-lg"
+                        variant="ghost" 
+                        size="sm" 
+                        className="text-teal-600 hover:text-teal-700 hover:bg-teal-50 p-2 h-auto rounded-lg"
                       >
-                        Submit
+                        <ArrowRight className="w-5 h-5" />
                       </Button>
                     </div>
                   </div>
@@ -201,7 +200,7 @@ const Dashboard = () => {
       case "discover":
         return (
           <div className="text-center py-20">
-            <Compass className="w-16 h-16 text-teal-600 mx-auto mb-4" />
+            <Clock className="w-16 h-16 text-teal-600 mx-auto mb-4" />
             <h2 className="text-2xl font-bold text-gray-900 mb-2">Discover</h2>
             <p className="text-gray-600">Explore new opportunities and resources</p>
           </div>
@@ -209,7 +208,7 @@ const Dashboard = () => {
       case "library":
         return (
           <div className="text-center py-20">
-            <BookOpen className="w-16 h-16 text-teal-600 mx-auto mb-4" />
+            <Upload className="w-16 h-16 text-teal-600 mx-auto mb-4" />
             <h2 className="text-2xl font-bold text-gray-900 mb-2">Library</h2>
             <p className="text-gray-600">Access your saved content and resources</p>
           </div>
@@ -217,7 +216,7 @@ const Dashboard = () => {
       case "profile":
         return (
           <div className="text-center py-20">
-            <User className="w-16 h-16 text-teal-600 mx-auto mb-4" />
+            <Search className="w-16 h-16 text-teal-600 mx-auto mb-4" />
             <h2 className="text-2xl font-bold text-gray-900 mb-2">Profile</h2>
             <p className="text-gray-600">Manage your account and preferences</p>
           </div>
@@ -225,7 +224,7 @@ const Dashboard = () => {
       case "help":
         return (
           <div className="text-center py-20">
-            <HelpCircle className="w-16 h-16 text-teal-600 mx-auto mb-4" />
+            <Settings className="w-16 h-16 text-teal-600 mx-auto mb-4" />
             <h2 className="text-2xl font-bold text-gray-900 mb-2">Help & Support</h2>
             <p className="text-gray-600">Get assistance and learn how to use agentics</p>
           </div>
@@ -246,9 +245,6 @@ const Dashboard = () => {
               <div className="w-8 h-8 bg-gradient-to-br from-teal-500 to-teal-600 rounded-lg flex items-center justify-center">
                 <Brain className="w-5 h-5 text-white" />
               </div>
-              <span className="text-xl font-bold bg-gradient-to-r from-teal-600 to-teal-700 bg-clip-text text-transparent">
-                agentics
-              </span>
             </div>
           )}
           <Button
