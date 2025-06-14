@@ -1,5 +1,5 @@
-
 import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { 
@@ -16,20 +16,22 @@ import {
   User,
   Settings,
   Clock,
-  Menu,
-  X
+  ChevronLeft,
+  ChevronRight,
+  MoreHorizontal
 } from "lucide-react";
 
 const Dashboard = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const location = useLocation();
 
   const navItems = [
-    { id: "new", name: "New", icon: <Plus className="w-5 h-5" /> },
-    { id: "discover", name: "Discover", icon: <Globe className="w-5 h-5" /> },
-    { id: "history", name: "History", icon: <History className="w-5 h-5" /> },
-    { id: "profile", name: "Profile", icon: <User className="w-5 h-5" /> },
-    { id: "settings", name: "Settings", icon: <Settings className="w-5 h-5" /> },
+    { id: "new", name: "New", icon: <Plus className="w-5 h-5" />, path: "/new" },
+    { id: "discover", name: "Discover", icon: <Globe className="w-5 h-5" />, path: "/discover" },
+    { id: "history", name: "History", icon: <History className="w-5 h-5" />, path: "/history" },
+    { id: "profile", name: "Profile", icon: <User className="w-5 h-5" />, path: "/profile" },
+    { id: "more", name: "More", icon: <MoreHorizontal className="w-5 h-5" />, path: "/more" },
   ];
 
   const quickActions = [
@@ -77,7 +79,7 @@ const Dashboard = () => {
             onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
             className="p-2"
           >
-            {sidebarCollapsed ? <Menu className="w-4 h-4" /> : <X className="w-4 h-4" />}
+            {sidebarCollapsed ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
           </Button>
         </div>
 
@@ -85,17 +87,18 @@ const Dashboard = () => {
         <nav className="flex-1 p-4">
           <div className="space-y-2">
             {navItems.map((item) => (
-              <Button
-                key={item.id}
-                variant="ghost"
-                className={`w-full ${sidebarCollapsed ? 'justify-center px-3' : 'justify-start'} text-gray-600 hover:text-gray-900 hover:bg-gray-50 h-10`}
-                title={sidebarCollapsed ? item.name : undefined}
-              >
-                {item.icon}
-                {!sidebarCollapsed && (
-                  <span className="ml-3 text-sm font-medium">{item.name}</span>
-                )}
-              </Button>
+              <Link key={item.id} to={item.path}>
+                <Button
+                  variant={location.pathname === item.path ? "default" : "ghost"}
+                  className={`w-full ${sidebarCollapsed ? 'justify-center px-3' : 'justify-start'} text-gray-600 hover:text-gray-900 hover:bg-gray-50 h-10`}
+                  title={sidebarCollapsed ? item.name : undefined}
+                >
+                  {item.icon}
+                  {!sidebarCollapsed && (
+                    <span className="ml-3 text-sm font-medium">{item.name}</span>
+                  )}
+                </Button>
+              </Link>
             ))}
           </div>
         </nav>
@@ -112,32 +115,32 @@ const Dashboard = () => {
                 agentics
               </h1>
               
-              {/* Centered Search Box */}
-              <div className="max-w-2xl mx-auto mb-8">
-                <div className="relative bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
-                  <div className="flex items-center px-4 py-4">
-                    <Search className="w-5 h-5 text-gray-400 mr-3 flex-shrink-0" />
+              {/* Centered Search Box - Made bigger and removed shadow */}
+              <div className="max-w-3xl mx-auto mb-8">
+                <div className="relative bg-white rounded-xl border border-gray-200">
+                  <div className="flex items-center px-6 py-5">
+                    <Search className="w-6 h-6 text-gray-400 mr-4 flex-shrink-0" />
                     <input
                       type="text"
                       placeholder="Ask anything..."
-                      className="flex-1 text-base bg-transparent border-none outline-none placeholder-gray-400 text-gray-900"
+                      className="flex-1 text-lg bg-transparent border-none outline-none placeholder-gray-400 text-gray-900"
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                     />
-                    <div className="flex items-center space-x-2 ml-3">
+                    <div className="flex items-center space-x-3 ml-4">
                       <Button 
                         variant="ghost" 
                         size="sm" 
                         className="text-gray-400 hover:text-gray-600 p-2 h-auto"
                       >
-                        <Paperclip className="w-4 h-4" />
+                        <Paperclip className="w-5 h-5" />
                       </Button>
                       <Button 
                         variant="ghost" 
                         size="sm" 
                         className="text-gray-400 hover:text-gray-600 p-2 h-auto"
                       >
-                        <Mic className="w-4 h-4" />
+                        <Mic className="w-5 h-5" />
                       </Button>
                     </div>
                   </div>
@@ -167,7 +170,28 @@ const Dashboard = () => {
 
             {/* Quick Actions */}
             <div className="grid md:grid-cols-2 gap-4 mb-12">
-              {quickActions.map((action, index) => (
+              {[
+                {
+                  title: "University Discovery",
+                  description: "Find programs that match your research interests",
+                  icon: <Globe className="w-5 h-5 text-blue-600" />
+                },
+                {
+                  title: "Professor Matching",
+                  description: "Connect with faculty whose research aligns with yours",
+                  icon: <Users className="w-5 h-5 text-green-600" />
+                },
+                {
+                  title: "Scholarship Search",
+                  description: "Discover funding opportunities and fellowships",
+                  icon: <Award className="w-5 h-5 text-yellow-600" />
+                },
+                {
+                  title: "Application Support",
+                  description: "Get help with SOPs, emails, and applications",
+                  icon: <Upload className="w-5 h-5 text-purple-600" />
+                }
+              ].map((action, index) => (
                 <Card 
                   key={index} 
                   className="cursor-pointer hover:shadow-md transition-all duration-200 border border-gray-100 hover:border-gray-200 bg-white"
