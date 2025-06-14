@@ -2,6 +2,7 @@
 import { useState } from "react";
 import ChatSidebar from "@/components/chat/ChatSidebar";
 import ChatMain from "@/components/chat/ChatMain";
+import ChatNavigation from "@/components/chat/ChatNavigation";
 
 const Community = () => {
   const [selectedChat, setSelectedChat] = useState("project-clover");
@@ -9,6 +10,9 @@ const Community = () => {
 
   return (
     <div className="min-h-screen bg-gray-50 flex">
+      {/* Left Navigation */}
+      <ChatNavigation />
+      
       {/* Sidebar - hidden on mobile when closed */}
       <div className={`${isSidebarOpen ? 'block' : 'hidden'} lg:block transition-all duration-300`}>
         <ChatSidebar 
