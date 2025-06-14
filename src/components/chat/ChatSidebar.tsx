@@ -56,6 +56,14 @@ const ChatSidebar = ({ selectedChat, setSelectedChat, onCloseSidebar, searchQuer
     { id: "construction-team", name: "Construction Team", icon: "🏗️" }
   ]);
 
+  const [users] = useState([
+    { id: "user-1", name: "John Doe", avatar: "👨‍💼", status: "online", lastSeen: "now" },
+    { id: "user-2", name: "Jane Smith", avatar: "👩‍💻", status: "away", lastSeen: "5 min ago" },
+    { id: "user-3", name: "Mike Johnson", avatar: "👨‍🔬", status: "offline", lastSeen: "1 hour ago" },
+    { id: "user-4", name: "Sarah Wilson", avatar: "👩‍🎨", status: "online", lastSeen: "now" },
+    { id: "user-5", name: "David Brown", avatar: "👨‍🏫", status: "busy", lastSeen: "2 min ago" },
+  ]);
+
   const schedules = [
     {
       id: "presentation",
@@ -105,20 +113,19 @@ const ChatSidebar = ({ selectedChat, setSelectedChat, onCloseSidebar, searchQuer
     space.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  const filteredUsers = users.filter(user =>
+    user.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   const filteredSchedules = schedules.filter(schedule =>
     schedule.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
     <div className="w-80 lg:w-80 md:w-72 sm:w-64 bg-white border-r border-gray-200 flex flex-col h-screen">
-      {/* Logo Section */}
+      {/* Header */}
       <div className="flex items-center justify-between p-4 border-b border-gray-100">
-        <div className="flex items-center space-x-2">
-          <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-            <span className="text-white font-bold text-sm">L</span>
-          </div>
-          <h2 className="font-semibold text-gray-900">Community</h2>
-        </div>
+        <h2 className="font-semibold text-gray-900">Community</h2>
         <Button variant="ghost" size="icon" onClick={onCloseSidebar} className="lg:hidden">
           <X className="w-4 h-4" />
         </Button>
@@ -182,6 +189,39 @@ const ChatSidebar = ({ selectedChat, setSelectedChat, onCloseSidebar, searchQuer
                   <p className="text-xs text-gray-500 truncate hidden sm:block">{feed.description}</p>
                 </div>
                 <span className="text-xs text-gray-400">{feed.time}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Users */}
+        <div className="p-4 border-t border-gray-100">
+          <div className="flex items-center justify-between mb-3">
+            <div className="flex items-center space-x-2">
+              <h3 className="font-medium text-gray-900">Users</h3>
+              <Badge variant="secondary" className="text-xs">{users.length}</Badge>
+            </div>
+          </div>
+          
+          <div className="space-y-1">
+            {filteredUsers.map((user) => (
+              <div
+                key={user.id}
+                className="flex items-center space-x-3 p-2 rounded-lg cursor-pointer hover:bg-gray-50"
+                onClick={() => setSelectedChat(user.id)}
+              >
+                <div className="relative">
+                  <span className="text-sm">{user.avatar}</span>
+                  <div className={`absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 rounded-full border border-white ${
+                    user.status === 'online' ? 'bg-green-500' : 
+                    user.status === 'away' ? 'bg-yellow-500' : 
+                    user.status === 'busy' ? 'bg-red-500' : 'bg-gray-400'
+                  }`}></div>
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm text-gray-700 truncate">{user.name}</p>
+                  <p className="text-xs text-gray-500 truncate">{user.lastSeen}</p>
+                </div>
               </div>
             ))}
           </div>
