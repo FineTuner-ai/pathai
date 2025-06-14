@@ -11,12 +11,12 @@ interface ChatMainProps {
   selectedChat: string;
   onOpenSidebar: () => void;
   isSidebarOpen: boolean;
+  searchQuery: string;
 }
 
-const ChatMain = ({ selectedChat, onOpenSidebar, isSidebarOpen }: ChatMainProps) => {
+const ChatMain = ({ selectedChat, onOpenSidebar, isSidebarOpen, searchQuery }: ChatMainProps) => {
   const [message, setMessage] = useState("");
-
-  const messages = [
+  const [messages, setMessages] = useState([
     {
       id: 1,
       user: "Vermillion Gray",
@@ -67,17 +67,48 @@ const ChatMain = ({ selectedChat, onOpenSidebar, isSidebarOpen }: ChatMainProps)
       content: "Etiam tempor orci eu lobortis elementum. Tincidunt augue interdum velit euismod in pellentesque massa placerat duis. Facilisis magna etiam tempor orci eu lobortis",
       reactions: { thumbsUp: 22, smile: 8 }
     }
-  ];
+  ]);
 
   const handleSendMessage = () => {
     if (message.trim()) {
-      console.log("Sending message:", message);
+      const newMessage = {
+        id: messages.length + 1,
+        user: "You",
+        avatar: "/placeholder.svg",
+        time: new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}),
+        content: message,
+      };
+      setMessages([...messages, newMessage]);
       setMessage("");
     }
   };
 
+  const filteredMessages = messages.filter(msg => 
+    msg.content.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    msg.user.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  const getChatTitle = () => {
+    switch (selectedChat) {
+      case "project-clover":
+        return "Project Clover";
+      case "welcome":
+        return "Welcome";
+      case "project-satan":
+        return "Project Satan";
+      case "project-x2":
+        return "Project X2";
+      case "general":
+        return "General";
+      case "announcements":
+        return "Announcements";
+      default:
+        return selectedChat.charAt(0).toUpperCase() + selectedChat.slice(1);
+    }
+  };
+
   return (
-    <div className="flex flex-col h-screen bg-white">
+    <div className="flex flex-col h-screen bg-white w-full">
       {/* Header */}
       <div className="flex items-center justify-between p-4 border-b border-gray-200 bg-white">
         <div className="flex items-center space-x-3">
@@ -90,27 +121,27 @@ const ChatMain = ({ selectedChat, onOpenSidebar, isSidebarOpen }: ChatMainProps)
             <span className="text-white font-bold text-sm">S</span>
           </div>
           <div className="hidden sm:block">
-            <h2 className="font-semibold text-gray-900">Project Clover</h2>
+            <h2 className="font-semibold text-gray-900">{getChatTitle()}</h2>
             <div className="flex items-center space-x-4 text-sm text-gray-600">
               <div className="flex items-center space-x-1">
                 <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                 <span>Active</span>
               </div>
-              <span>187 People</span>
-              <span>887 Chats Total</span>
+              <span className="hidden md:block">187 People</span>
+              <span className="hidden lg:block">887 Chats Total</span>
             </div>
           </div>
         </div>
         
         <div className="flex items-center space-x-2">
-          <div className="flex items-center space-x-1">
-            <div className="w-2 h-2 bg-green-500 rounded-full sm:hidden"></div>
-            <span className="text-sm text-green-600 sm:hidden">Active</span>
+          <div className="flex items-center space-x-1 sm:hidden">
+            <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+            <span className="text-sm text-green-600">Active</span>
           </div>
-          <Button variant="ghost" size="icon">
+          <Button variant="ghost" size="icon" className="hidden sm:flex">
             <Search className="w-4 h-4" />
           </Button>
-          <Button variant="ghost" size="icon">
+          <Button variant="ghost" size="icon" className="hidden sm:flex">
             <Settings className="w-4 h-4" />
           </Button>
           <Button size="icon" className="bg-blue-600 hover:bg-blue-700">
@@ -120,18 +151,18 @@ const ChatMain = ({ selectedChat, onOpenSidebar, isSidebarOpen }: ChatMainProps)
       </div>
 
       {/* Messages */}
-      <ScrollArea className="flex-1 p-4">
-        <div className="space-y-6 max-w-4xl mx-auto">
-          {messages.map((msg) => (
-            <div key={msg.id} className="flex space-x-3">
-              <Avatar className="w-10 h-10">
+      <ScrollArea className="flex-1 p-2 sm:p-4">
+        <div className="space-y-4 sm:space-y-6 max-w-4xl mx-auto">
+          {filteredMessages.map((msg) => (
+            <div key={msg.id} className="flex space-x-2 sm:space-x-3">
+              <Avatar className="w-8 h-8 sm:w-10 sm:h-10 flex-shrink-0">
                 <AvatarImage src={msg.avatar} />
                 <AvatarFallback>{msg.user.split(' ').map(n => n[0]).join('')}</AvatarFallback>
               </Avatar>
               
               <div className="flex-1 min-w-0">
                 <div className="flex items-center space-x-2 mb-1">
-                  <span className="font-medium text-gray-900">{msg.user}</span>
+                  <span className="font-medium text-gray-900 text-sm sm:text-base truncate">{msg.user}</span>
                   {msg.isAdmin && (
                     <Badge variant="secondary" className="text-xs">Admin</Badge>
                   )}
@@ -143,20 +174,22 @@ const ChatMain = ({ selectedChat, onOpenSidebar, isSidebarOpen }: ChatMainProps)
                 )}
                 
                 {msg.tags && (
-                  <div className="flex flex-wrap gap-2 mb-2">
+                  <div className="flex flex-wrap gap-1 sm:gap-2 mb-2">
                     {msg.tags.map((tag, index) => (
                       <Badge key={index} variant="outline" className="text-xs">
-                        📎 {tag}
+                        📎 <span className="hidden sm:inline">{tag}</span>
+                        <span className="sm:hidden">{tag.split(' ')[0]}</span>
                       </Badge>
                     ))}
                   </div>
                 )}
                 
                 {msg.links && (
-                  <div className="flex flex-wrap gap-2 mb-2">
+                  <div className="flex flex-wrap gap-1 sm:gap-2 mb-2">
                     {msg.links.map((link, index) => (
                       <Badge key={index} variant="outline" className="text-xs cursor-pointer hover:bg-gray-100">
-                        🔗 {link}
+                        🔗 <span className="hidden sm:inline">{link}</span>
+                        <span className="sm:hidden">{link.split(' ')[0]}</span>
                       </Badge>
                     ))}
                   </div>
@@ -164,8 +197,8 @@ const ChatMain = ({ selectedChat, onOpenSidebar, isSidebarOpen }: ChatMainProps)
                 
                 {msg.image && (
                   <div className="mb-2">
-                    <div className="w-64 h-48 bg-gray-100 rounded-lg flex items-center justify-center">
-                      <div className="w-16 h-16 bg-black rounded"></div>
+                    <div className="w-48 sm:w-64 h-36 sm:h-48 bg-gray-100 rounded-lg flex items-center justify-center">
+                      <div className="w-12 sm:w-16 h-12 sm:h-16 bg-black rounded"></div>
                     </div>
                     {msg.timestamp && (
                       <p className="text-center text-xs text-gray-500 mt-2">{msg.timestamp}</p>
@@ -174,7 +207,7 @@ const ChatMain = ({ selectedChat, onOpenSidebar, isSidebarOpen }: ChatMainProps)
                 )}
                 
                 {msg.reactions && (
-                  <div className="flex items-center space-x-3 mt-2">
+                  <div className="flex items-center space-x-2 sm:space-x-3 mt-2">
                     {msg.reactions.heart && (
                       <div className="flex items-center space-x-1 text-xs text-gray-600">
                         <span>❤️</span>
@@ -209,9 +242,9 @@ const ChatMain = ({ selectedChat, onOpenSidebar, isSidebarOpen }: ChatMainProps)
       </ScrollArea>
 
       {/* Message Input */}
-      <div className="p-4 border-t border-gray-200 bg-white">
+      <div className="p-2 sm:p-4 border-t border-gray-200 bg-white">
         <div className="flex items-center space-x-2 max-w-4xl mx-auto">
-          <Button variant="ghost" size="icon">
+          <Button variant="ghost" size="icon" className="flex-shrink-0">
             <Plus className="w-4 h-4" />
           </Button>
           
@@ -220,26 +253,26 @@ const ChatMain = ({ selectedChat, onOpenSidebar, isSidebarOpen }: ChatMainProps)
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               placeholder="Enter your response..."
-              className="pr-32"
+              className="pr-20 sm:pr-32"
               onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
             />
             <div className="absolute right-2 top-1/2 transform -translate-y-1/2 flex items-center space-x-1">
-              <Button variant="ghost" size="icon" className="w-6 h-6">
+              <Button variant="ghost" size="icon" className="w-6 h-6 hidden sm:flex">
                 <Smile className="w-4 h-4" />
               </Button>
               <Button variant="ghost" size="icon" className="w-6 h-6">
                 <Paperclip className="w-4 h-4" />
               </Button>
-              <Button variant="ghost" size="icon" className="w-6 h-6">
+              <Button variant="ghost" size="icon" className="w-6 h-6 hidden sm:flex">
                 <ImageIcon className="w-4 h-4" />
               </Button>
-              <Button variant="ghost" size="icon" className="w-6 h-6">
+              <Button variant="ghost" size="icon" className="w-6 h-6 hidden sm:flex">
                 <Mic className="w-4 h-4" />
               </Button>
             </div>
           </div>
           
-          <Button onClick={handleSendMessage} size="icon" className="bg-blue-600 hover:bg-blue-700">
+          <Button onClick={handleSendMessage} size="icon" className="bg-blue-600 hover:bg-blue-700 flex-shrink-0">
             <Send className="w-4 h-4" />
           </Button>
         </div>
