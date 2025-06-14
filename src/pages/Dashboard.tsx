@@ -16,11 +16,13 @@ import {
   User,
   Settings,
   Clock,
-  Briefcase
+  Menu,
+  X
 } from "lucide-react";
 
 const Dashboard = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
   const navItems = [
     { id: "new", name: "New", icon: <Plus className="w-5 h-5" /> },
@@ -56,17 +58,27 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen bg-gray-50 flex">
       {/* Left Sidebar */}
-      <div className="w-64 bg-white border-r border-gray-200 hidden md:flex flex-col">
-        {/* Logo */}
-        <div className="p-6 border-b border-gray-100">
-          <div className="flex items-center space-x-3">
-            <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-              <Brain className="w-5 h-5 text-white" />
+      <div className={`${sidebarCollapsed ? 'w-16' : 'w-64'} bg-white border-r border-gray-200 hidden md:flex flex-col transition-all duration-300`}>
+        {/* Logo and Toggle */}
+        <div className="p-4 border-b border-gray-100 flex items-center justify-between">
+          {!sidebarCollapsed && (
+            <div className="flex items-center space-x-3">
+              <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
+                <Brain className="w-5 h-5 text-white" />
+              </div>
+              <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                agentics
+              </span>
             </div>
-            <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              agentics
-            </span>
-          </div>
+          )}
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
+            className="p-2"
+          >
+            {sidebarCollapsed ? <Menu className="w-4 h-4" /> : <X className="w-4 h-4" />}
+          </Button>
         </div>
 
         {/* Navigation */}
@@ -76,10 +88,13 @@ const Dashboard = () => {
               <Button
                 key={item.id}
                 variant="ghost"
-                className="w-full justify-start text-gray-600 hover:text-gray-900 hover:bg-gray-50 h-10"
+                className={`w-full ${sidebarCollapsed ? 'justify-center px-3' : 'justify-start'} text-gray-600 hover:text-gray-900 hover:bg-gray-50 h-10`}
+                title={sidebarCollapsed ? item.name : undefined}
               >
                 {item.icon}
-                <span className="ml-3 text-sm font-medium">{item.name}</span>
+                {!sidebarCollapsed && (
+                  <span className="ml-3 text-sm font-medium">{item.name}</span>
+                )}
               </Button>
             ))}
           </div>
@@ -88,53 +103,66 @@ const Dashboard = () => {
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col">
-        {/* Top Search Bar */}
-        <div className="bg-white border-b border-gray-200 p-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="relative">
-              <div className="relative bg-gray-50 rounded-xl border border-gray-200 hover:border-gray-300 transition-colors">
-                <div className="flex items-center px-4 py-3">
-                  <Search className="w-5 h-5 text-gray-400 mr-3 flex-shrink-0" />
-                  <input
-                    type="text"
-                    placeholder="Ask about universities, professors, scholarships, or application guidance..."
-                    className="flex-1 text-sm bg-transparent border-none outline-none placeholder-gray-500 text-gray-900"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                  />
-                  <div className="flex items-center space-x-2 ml-3">
-                    <Button 
-                      variant="ghost" 
-                      size="sm" 
-                      className="text-gray-400 hover:text-gray-600 p-1.5 h-auto"
-                    >
-                      <Paperclip className="w-4 h-4" />
-                    </Button>
-                    <Button 
-                      variant="ghost" 
-                      size="sm" 
-                      className="text-gray-400 hover:text-gray-600 p-1.5 h-auto"
-                    >
-                      <Mic className="w-4 h-4" />
-                    </Button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
         {/* Main Content Area */}
         <div className="flex-1 p-6">
           <div className="max-w-4xl mx-auto">
-            {/* Welcome Section */}
+            {/* Welcome Section with Centered Logo */}
             <div className="text-center mb-12">
-              <h1 className="text-3xl font-bold text-gray-900 mb-3">
-                Your AI Research Assistant
+              <h1 className="text-4xl font-bold text-gray-900 mb-8">
+                agentics
               </h1>
-              <p className="text-gray-600 max-w-2xl mx-auto">
-                Discover universities, connect with professors, find scholarships, and get application support - all powered by AI.
-              </p>
+              
+              {/* Centered Search Box */}
+              <div className="max-w-2xl mx-auto mb-8">
+                <div className="relative bg-white rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+                  <div className="flex items-center px-4 py-4">
+                    <Search className="w-5 h-5 text-gray-400 mr-3 flex-shrink-0" />
+                    <input
+                      type="text"
+                      placeholder="Ask anything..."
+                      className="flex-1 text-base bg-transparent border-none outline-none placeholder-gray-400 text-gray-900"
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                    />
+                    <div className="flex items-center space-x-2 ml-3">
+                      <Button 
+                        variant="ghost" 
+                        size="sm" 
+                        className="text-gray-400 hover:text-gray-600 p-2 h-auto"
+                      >
+                        <Paperclip className="w-4 h-4" />
+                      </Button>
+                      <Button 
+                        variant="ghost" 
+                        size="sm" 
+                        className="text-gray-400 hover:text-gray-600 p-2 h-auto"
+                      >
+                        <Mic className="w-4 h-4" />
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Suggestion Pills */}
+              <div className="flex flex-wrap justify-center gap-2 mb-12">
+                {[
+                  "Current Events",
+                  "Research Programs", 
+                  "Scholarship Search",
+                  "Professor Match",
+                  "Application Help"
+                ].map((suggestion, index) => (
+                  <Button
+                    key={index}
+                    variant="outline"
+                    size="sm"
+                    className="rounded-full bg-white border-gray-200 text-gray-600 hover:bg-gray-50 px-4 py-2"
+                  >
+                    {suggestion}
+                  </Button>
+                ))}
+              </div>
             </div>
 
             {/* Quick Actions */}
