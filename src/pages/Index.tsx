@@ -76,7 +76,7 @@ const Index = () => {
             </div>
             <div className="hidden md:flex items-center space-x-4">
               <Button variant="outline" className="border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white px-6 py-2 rounded-xl transition-all duration-300">
-                Join us on Discord
+                Community
               </Button>
             </div>
             <Button

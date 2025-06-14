@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -12,11 +11,52 @@ import {
   Mic,
   Camera,
   Clock,
-  ArrowRight
+  ArrowRight,
+  Loader2,
+  AlertCircle
 } from "lucide-react";
+import { useChat } from "../../hooks/chat";
+import ChatInterface from "./ChatInterface";
 
 const HomePage = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [showChat, setShowChat] = useState(false);
+  const { messages, isLoading, error, sendMessage, clearChat } = useChat();
+
+  const handleSearch = async (query?: string) => {
+    const searchTerm = query || searchQuery;
+    if (!searchTerm.trim()) return;
+
+    setShowChat(true);
+    await sendMessage(searchTerm);
+    setSearchQuery("");
+  };
+
+  const handleSuggestionClick = (suggestion: string) => {
+    const cleanSuggestion = suggestion.replace(/^[🌍🎓💰👥📝]\s*/, '');
+    handleSearch(cleanSuggestion);
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
+  if (showChat) {
+    return (
+      <ChatInterface
+        messages={messages}
+        isLoading={isLoading}
+        error={error}
+        onSendMessage={sendMessage}
+        onBack={() => {
+          setShowChat(false);
+          clearChat();
+        }}
+      />
+    );
+  }
 
   return (
     <>
@@ -35,16 +75,19 @@ const HomePage = () => {
               <Search className="w-6 h-6 text-gray-400 mr-4 flex-shrink-0" />
               <input
                 type="text"
-                placeholder="Ask anything..."
+                placeholder="Ask anything about universities, scholarships, or research..."
                 className="flex-1 text-lg bg-transparent border-none outline-none placeholder-gray-400 text-gray-900"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyPress={handleKeyPress}
+                disabled={isLoading}
               />
               <div className="flex items-center space-x-3 ml-4">
                 <Button 
                   variant="ghost" 
                   size="sm" 
                   className="text-gray-400 hover:text-teal-600 hover:bg-teal-50 p-2 h-auto rounded-lg"
+                  disabled={isLoading}
                 >
                   <Camera className="w-5 h-5" />
                 </Button>
@@ -52,6 +95,7 @@ const HomePage = () => {
                   variant="ghost" 
                   size="sm" 
                   className="text-gray-400 hover:text-teal-600 hover:bg-teal-50 p-2 h-auto rounded-lg"
+                  disabled={isLoading}
                 >
                   <Mic className="w-5 h-5" />
                 </Button>
@@ -59,12 +103,26 @@ const HomePage = () => {
                   variant="ghost" 
                   size="sm" 
                   className="text-teal-600 hover:text-teal-700 hover:bg-teal-50 p-2 h-auto rounded-full"
+                  onClick={() => handleSearch()}
+                  disabled={isLoading || !searchQuery.trim()}
                 >
-                  <ArrowRight className="w-5 h-5" />
+                  {isLoading ? (
+                    <Loader2 className="w-5 h-5 animate-spin" />
+                  ) : (
+                    <ArrowRight className="w-5 h-5" />
+                  )}
                 </Button>
               </div>
             </div>
           </div>
+          
+          {/* Error Display */}
+          {error && (
+            <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg flex items-center space-x-2 text-red-700">
+              <AlertCircle className="w-5 h-5 flex-shrink-0" />
+              <span className="text-sm">{error}</span>
+            </div>
+          )}
         </div>
 
         {/* Suggestion Pills */}
@@ -81,6 +139,8 @@ const HomePage = () => {
               variant="outline"
               size="sm"
               className="rounded-full bg-white border-gray-200 text-gray-600 hover:bg-teal-50 hover:border-teal-200 hover:text-teal-700 px-5 py-2.5 transition-all"
+              onClick={() => handleSuggestionClick(suggestion)}
+              disabled={isLoading}
             >
               {suggestion}
             </Button>
@@ -95,30 +155,35 @@ const HomePage = () => {
             title: "University Discovery",
             description: "Find programs that match your research interests",
             icon: <Globe className="w-6 h-6 text-teal-600" />,
-            bgColor: "bg-teal-50"
+            bgColor: "bg-teal-50",
+            query: "Help me find universities with programs that match my research interests"
           },
           {
             title: "Professor Matching",
             description: "Connect with faculty whose research aligns with yours",
             icon: <Users className="w-6 h-6 text-blue-600" />,
-            bgColor: "bg-blue-50"
+            bgColor: "bg-blue-50",
+            query: "Help me find professors whose research aligns with my interests"
           },
           {
             title: "Scholarship Search",
             description: "Discover funding opportunities and fellowships",
             icon: <Award className="w-6 h-6 text-amber-600" />,
-            bgColor: "bg-amber-50"
+            bgColor: "bg-amber-50",
+            query: "Help me find scholarships and funding opportunities for my studies"
           },
           {
             title: "Application Support",
             description: "Get help with SOPs, emails, and applications",
             icon: <Upload className="w-6 h-6 text-purple-600" />,
-            bgColor: "bg-purple-50"
+            bgColor: "bg-purple-50",
+            query: "Help me with my application materials and SOPs"
           }
         ].map((action, index) => (
           <Card 
             key={index} 
             className="cursor-pointer hover:shadow-lg transition-all duration-200 border border-gray-100 hover:border-teal-200 bg-white group"
+            onClick={() => handleSearch(action.query)}
           >
             <CardContent className="p-6">
               <div className="flex items-start space-x-4">
